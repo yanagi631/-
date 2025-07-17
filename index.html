@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const prompt = `あなたは中小企業診断士の試験に非常に詳しい専門家です。以下の学習トピックに関する質問に対して、受験生に分かりやすく、丁寧かつ正確に回答してください。\n\n学習トピック: 「${activeTopic.title}」\n\n質問:\n「${question}」\n\n回答:`;
                     let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
                     const payload = { contents: chatHistory };
-                    const apiKey = "AIzaSyACs-eSxZdBCAtPaVMcDKEG9TEGFFyk4YM"; // This will be handled by the environment
+                    const apiKey = "AIzaSyACs-eSxZdBCAtPaVMcDKEG9TEGFFyk4YM"; // あなたのAPIキーをここに貼り付けてください
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
                     
                     const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
