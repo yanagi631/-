@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中小企業診断士 合格ロードマップ</title>
+    <title>中小企業診断士 総合合格支援プラットフォーム</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -17,432 +17,189 @@
         .modal.is-open { display: flex; }
         .modal-open-body { overflow: hidden; }
         .bookmark-btn.bookmarked svg { fill: #f59e0b; stroke: #f59e0b; }
+        .main-tab-btn.active { border-color: #3b82f6; color: #3b82f6; background-color: #eff6ff; }
+        .main-tab-btn { border-color: transparent; }
+        .sub-tab-btn.active { border-color: #10b981; color: #10b981; }
+        .sub-tab-btn { border-color: transparent; }
+        .keyword.found { background-color: #d1fae5; color: #065f46; }
+        .keyword.missing { background-color: #fee2e2; color: #991b1b; }
     </style>
 </head>
 <body class="bg-gray-100">
 
     <div id="app" class="container mx-auto p-4 sm:p-6 md:p-8">
         <header class="text-center mb-8">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800">中小企業診断士 合格ロードマップ</h1>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800">中小企業診断士 総合合格支援プラットフォーム</h1>
             <p class="text-lg text-gray-600 mt-2">2026年度試験 完全合格プラン</p>
         </header>
-        
-        <!-- ダッシュボード -->
-        <div id="dashboard" class="bg-white p-6 rounded-xl shadow-md border border-gray-200 mb-8">
-            <h2 class="text-xl font-bold text-gray-700 mb-4">学習進捗</h2>
-            <div>
-                <div class="flex justify-between mb-1">
-                    <span class="text-base font-medium text-blue-700">全体の進捗率</span>
-                    <span id="overall-progress-text" class="text-sm font-medium text-blue-700">0%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div id="overall-progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-            </div>
-            <div class="mt-6">
-                 <canvas id="subject-progress-chart"></canvas>
+
+        <!-- メインモード切替タブ -->
+        <div class="mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                    <button id="main-tab-1st-exam" class="main-tab-btn active whitespace-nowrap py-4 px-2 border-b-2 font-medium text-sm">1次試験対策</button>
+                    <button id="main-tab-2nd-exam" class="main-tab-btn text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-2 border-b-2 font-medium text-sm">2次試験対策</button>
+                    <button id="main-tab-post-qual" class="main-tab-btn text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-2 border-b-2 font-medium text-sm">資格取得後</button>
+                </nav>
             </div>
         </div>
 
-        <!-- アクションボタン -->
-        <div id="action-buttons" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-            <button id="review-quiz-btn" class="w-full py-3 px-4 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-                復習テストを開始
-            </button>
-             <button id="reset-progress-btn" class="w-full py-3 px-4 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-                進捗をリセット
-            </button>
+        <!-- 1次試験対策 View -->
+        <div id="view-1st-exam">
+            <!-- サブタブ -->
+            <div class="mb-6">
+                <div class="border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                        <button id="sub-tab-roadmap" class="sub-tab-btn active whitespace-nowrap pb-2 px-1 border-b-2 font-medium text-sm">学習ロードマップ</button>
+                        <button id="sub-tab-dojo" class="sub-tab-btn text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap pb-2 px-1 border-b-2 font-medium text-sm">過去問道場</button>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- 1次試験：学習ロードマップ -->
+            <div id="view-roadmap">
+                <div id="dashboard" class="bg-white p-6 rounded-xl shadow-md border border-gray-200 mb-8">
+                    <h2 class="text-xl font-bold text-gray-700 mb-4">学習進捗</h2>
+                    <div>
+                        <div class="flex justify-between mb-1"><span class="text-base font-medium text-blue-700">全体の進捗率</span><span id="overall-progress-text" class="text-sm font-medium text-blue-700">0%</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5"><div id="overall-progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div></div>
+                    </div>
+                    <div class="mt-6"><canvas id="subject-progress-chart"></canvas></div>
+                </div>
+                <div id="action-buttons" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <button id="review-quiz-btn" class="w-full py-3 px-4 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>復習テストを開始</button>
+                    <button id="reset-progress-btn" class="w-full py-3 px-4 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>進捗をリセット</button>
+                </div>
+                <div id="roadmap-container"></div>
+            </div>
+
+            <!-- 1次試験：過去問道場 -->
+            <div id="view-dojo" class="hidden">
+                 <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">過去問道場</h2>
+                    <p class="text-gray-600 mb-6">学習進捗に応じてアンロックされた科目の問題に挑戦できます。</p>
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-3">1. 出題範囲を選択してください</h3>
+                        <div id="dojo-subject-selection" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+                    </div>
+                    <div class="mb-6">
+                         <h3 class="text-lg font-semibold mb-3">2. 問題数を選択してください</h3>
+                         <select id="dojo-question-count" class="w-full p-2 border border-gray-300 rounded-md">
+                            <option value="5">5問</option><option value="10" selected>10問</option><option value="20">20問</option>
+                         </select>
+                    </div>
+                    <button id="dojo-start-btn" class="w-full py-3 px-5 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2z"></polygon></svg>演習を開始する</button>
+                    <div id="dojo-quiz-container" class="mt-8"></div>
+                </div>
+            </div>
         </div>
 
-        <!-- ロードマップ -->
-        <div id="roadmap-container"></div>
+        <!-- 2次試験対策 View -->
+        <div id="view-2nd-exam" class="hidden">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">2次試験 記述式演習</h2>
+                <p class="text-gray-600 mb-6">過去問を選択し、記述解答の演習とキーワード採点を行います。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label for="2nd-exam-case-select" class="block text-sm font-medium text-gray-700">事例を選択</label>
+                        <select id="2nd-exam-case-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                    </div>
+                    <div>
+                        <label for="2nd-exam-question-select" class="block text-sm font-medium text-gray-700">設問を選択</label>
+                        <select id="2nd-exam-question-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></select>
+                    </div>
+                </div>
+                <div id="2nd-exam-content" class="p-4 border rounded-lg bg-gray-50">
+                    <div id="2nd-exam-prompt" class="prose max-w-none mb-4"></div>
+                    <textarea id="2nd-exam-answer" class="w-full p-2 border rounded-md" rows="8" placeholder="ここに解答を入力してください..."></textarea>
+                    <button id="2nd-exam-submit" class="mt-4 w-full py-2 px-4 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700">キーワード採点</button>
+                </div>
+                <div id="2nd-exam-result" class="mt-6 hidden"></div>
+            </div>
+        </div>
+
+        <!-- 資格取得後 View -->
+        <div id="view-post-qual" class="hidden">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 prose max-w-none">
+                <h2 class="text-2xl font-bold text-gray-800">資格取得後のステップ</h2>
+                <p>中小企業診断士試験の合格、誠におめでとうございます！しかし、これはゴールではなく、プロのコンサルタントとしてのキャリアのスタートです。</p>
+                <hr>
+                <h3>1. 実務補習・診断実務</h3>
+                <p>中小企業診断士として正式に登録するためには、試験合格後3年以内に「実務補習を15日以上受ける」または「診断実務に15日以上従事する」必要があります。</p>
+                <ul>
+                    <li><strong>実務補習:</strong> 中小企業診断協会が実施するプログラムです。5日間または6日間のコースで、実際の企業をグループで診断し、報告書を作成します。コンサルティングの基礎を実践的に学べる貴重な機会です。</li>
+                    <li><strong>診断実務:</strong> 実際に中小企業の経営診断・助言業務に従事することです。勤務先の業務や、知人からの依頼などが該当します。</li>
+                </ul>
+                <h3>2. 中小企業診断士協会への入会</h3>
+                <p>各都道府県にある中小企業診断士協会に入会することで、最新の情報を得たり、研修に参加したり、診断士同士のネットワークを広げることができます。独立を目指す方にとっても、企業内で活動する方にとっても、非常に有益なコミュニティです。</p>
+                <h3>3. キャリアパス</h3>
+                <p>資格取得後のキャリアは多様です。</p>
+                <ul>
+                    <li><strong>独立診断士:</strong> 自身のコンサルティングファームを立ち上げ、様々な企業の経営支援を行います。</li>
+                    <li><strong>企業内診断士:</strong> 勤務先で経営企画、マーケティング、新規事業開発などの分野で専門知識を活かして活躍します。</li>
+                    <li><strong>副業・兼業:</strong> 現在の仕事と両立しながら、週末などを利用してコンサルティング活動を行います。</li>
+                </ul>
+                <p>中小企業診断士としての活動は、日本の経済を支える中小企業の成長に貢献できる、非常にやりがいのある仕事です。ぜひ、この資格を最大限に活用し、素晴らしいキャリアを築いてください。</p>
+            </div>
+        </div>
+
+        <!-- データ管理 -->
+        <div id="backup-section" class="bg-white p-4 rounded-xl shadow-md border border-gray-200 mt-8">
+            <h2 class="text-xl font-bold text-gray-700 mb-4">進捗データのバックアップ</h2>
+            <p class="text-sm text-gray-600 mb-4">学習を中断・終了する際は「エクスポート」でコードを保存してください。次回再開時に「インポート」で復元できます。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <button id="export-progress-btn" class="w-full py-3 px-4 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>進捗をエクスポート</button>
+                <button id="import-progress-btn" class="w-full py-3 px-4 bg-sky-600 text-white font-bold rounded-lg hover:bg-sky-700 transition-colors flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>進捗をインポート</button>
+            </div>
+        </div>
     </div>
 
     <!-- 各種モーダル -->
     <div id="learning-modal" class="modal fixed inset-0 bg-black bg-opacity-60 justify-center items-center p-2 sm:p-4 z-50"></div>
     <div id="review-modal" class="modal fixed inset-0 bg-black bg-opacity-60 justify-center items-center p-2 sm:p-4 z-50"></div>
+    <div id="data-modal" class="modal fixed inset-0 bg-black bg-opacity-60 justify-center items-center p-2 sm:p-4 z-50"></div>
 
 <script>
 // --- データ定義 ---
 const roadmapData = [
-  { id: 1, category: '第1次試験', subject: '企業経営理論', period: '2025年7月～9月',
+  { id: 1, category: '第1次試験', subject: '経済学・経済政策', period: '2025年5月～6月',
     topics: [
-      { id: '1-1', title: '経営戦略論の基礎', content: `<h3>経営戦略とは？</h3><p>企業が持つ経営資源（ヒト・モノ・カネ・情報）を、競争優位を築くためにどのように配分するかという、長期的かつ全体的な計画のことです。</p><hr /><h3>主要なフレームワーク</h3><h4>1. SWOT分析</h4><p>企業の内部環境と外部環境を「強み(S)」「弱み(W)」「機会(O)」「脅威(T)」の4つに分けて分析する手法です。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-center"><thead><tr><th class="border p-2" colspan="2" rowspan="2"></th><th class="border p-2 bg-gray-100" colspan="2">内部環境</th></tr><tr><th class="border p-2 bg-blue-50">強み (Strengths)</th><th class="border p-2 bg-blue-50">弱み (Weaknesses)</th></tr></thead><tbody><tr><th class="border p-2 bg-gray-100 align-middle" rowspan="2"><div style="writing-mode:vertical-rl;" class="mx-auto">外部環境</div></th><th class="border p-2 bg-green-50">機会 (Opportunities)</th><td class="border p-2"><b>SO戦略 (積極化)</b><br><small>強みを活かし機会を捉える</small></td><td class="border p-2"><b>WO戦略 (段階的)</b><br><small>弱みを克服し機会を捉える</small></td></tr><tr><th class="border p-2 bg-green-50">脅威 (Threats)</th><td class="border p-2"><b>ST戦略 (差別化)</b><br><small>強みを活かし脅威を回避</small></td><td class="border p-2"><b>WT戦略 (防衛/撤退)</b><br><small>最悪事態を回避する</small></td></tr></tbody></table></div><br><h4>2. 5フォース分析</h4><p>業界の収益性を決める5つの競争要因（フォース）を分析し、業界の構造や魅力を明らかにします。</p><div class="overflow-x-auto"><table class="w-full border-none text-center text-sm"><tbody><tr><td></td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg">新規参入の脅威</td><td></td></tr><tr><td></td><td class="text-2xl text-red-500 leading-none">↓</td><td></td></tr><tr><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg w-1/3">売り手の交渉力</td><td class="p-4 border-2 border-red-400 bg-red-100 rounded-lg font-bold">← 既存企業同士の競争 →</td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg w-1/3">買い手の交渉力</td></tr><tr><td></td><td class="text-2xl text-red-500 leading-none">↑</td><td></td></tr><tr><td></td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg">代替品の脅威</td><td></td></tr></tbody></table></div><br><h4>3. PPM (Product Portfolio Management)</h4><p>事業を「市場成長率」と「市場シェア」の2軸で評価し、経営資源の最適な配分を決定します。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-center"><thead><tr><th class="border p-2" colspan="2" rowspan="2"></th><th class="border p-2 bg-gray-100" colspan="2">相対的市場シェア</th></tr><tr><th class="border p-2 bg-yellow-50">高</th><th class="border p-2 bg-yellow-50">低</th></tr></thead><tbody><tr><th class="border p-2 bg-gray-100 align-middle" rowspan="2"><div style="writing-mode:vertical-rl;" class="mx-auto">市場成長率</div></th><th class="border p-2 bg-green-50">高</th><td class="border p-2 bg-yellow-100"><b>花形 (Star)</b><br><small>投資を継続しシェアを維持</small></td><td class="border p-2 bg-orange-100"><b>問題児 (Problem Child)</b><br><small>強化か撤退かを選択</small></td></tr><tr><th class="border p-2 bg-green-50">低</th><td class="border p-2 bg-green-100"><b>金のなる木 (Cash Cow)</b><br><small>利益を他事業へ投資</small></td><td class="border p-2 bg-red-100"><b>負け犬 (Dog)</b><br><small>事業の縮小・撤退を検討</small></td></tr></tbody></table></div>`,
-        questions: [ { q: '企業の内部環境と外部環境を分析し、戦略立案に役立てるフレームワークは次のうちどれか？', options: ['5フォース分析', 'PPM', 'SWOT分析', 'アンゾフの成長マトリクス'], answer: 2, explanation: 'SWOT分析は、強み(S)・弱み(W)という内部環境と、機会(O)・脅威(T)という外部環境を分析する手法です。' }, { q: 'PPMにおいて、市場成長率は高いが市場シェアが低い事業領域を何と呼ぶか？', options: ['花形', '金のなる木', '問題児', '負け犬'], answer: 2, explanation: '市場成長率は高いものの、シェアが低いため多くの資金投下が必要となる「問題児」に分類されます。' } ]
+      { id: '1-1', title: 'ミクロ経済学の基礎', content: `<h3>需要と供給</h3><p>ミクロ経済学の最も基本的な概念です。市場における価格と取引量は、需要と供給の関係によって決まります。</p><ul><li><b>需要曲線</b>: 価格が下がると需要量が増えるため、右下がりの曲線になります。</li><li><b>供給曲線</b>: 価格が上がると供給量が増えるため、右上がりの曲線になります。</li></ul><p>需要曲線と供給曲線が交わる点で価格と取引量が決定され、これを<b>均衡点</b>と呼びます。</p>`,
+        questions: [ 
+            { q: '一般的に、ある財の価格が上昇した場合、その財の需要曲線はどうなりますか？', options: ['右にシフトする', '左にシフトする', '曲線上の点が移動する', '変化しない'], answer: 2, explanation: '価格の変動は需要曲線のシフト要因ではなく、曲線上の点の移動要因となります。価格が上がると、需要量は曲線に沿って左上に移動します。' },
+            { q: '代替財（例：コーヒーと紅茶）の一方の価格が下落した場合、もう一方の財の需要はどうなりますか？', options: ['増加する', '減少する', '変化しない', '供給が減少する'], answer: 1, explanation: '代替財は競合する関係にあるため、一方の価格が下落するとそちらの需要が増え、もう一方の需要は減少します。需要曲線は左にシフトします。' }
+        ]
       },
-      { id: '1-2', title: '組織論の基礎', content: `<h3>組織構造の基本形態</h3><p>企業の戦略を実行するための枠組みが組織構造です。代表的な形態には以下のようなものがあります。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-left"><thead><tr class="bg-gray-100"><th class="border p-2">形態</th><th class="border p-2">特徴</th><th class="border p-2">メリット</th><th class="border p-2">デメリット</th></tr></thead><tbody><tr><td class="border p-2 font-bold">機能別組織</td><td class="border p-2">製造、営業、経理など職能（機能）ごとに部門を編成する。</td><td class="border p-2">専門性の向上、規模の経済性</td><td class="border p-2">部門間の対立、意思決定の遅延</td></tr><tr><td class="border p-2 font-bold">事業部制組織</td><td class="border p-2">製品別、地域別など事業単位で自己完結的な組織を作る。</td><td class="border p-2">迅速な意思決定、業績評価が明確</td><td class="border p-2">資源の重複、全社的視点の欠如</td></tr><tr><td class="border p-2 font-bold">マトリックス組織</td><td class="border p-2">機能別と事業部制を組み合わせ、1人が複数の指揮命令系統に属する。</td><td class="border p-2">柔軟な対応、資源の有効活用</td><td class="border p-2">指揮命令の混乱、コンフリクト</td></tr></tbody></table></div><br><h3>モチベーション理論：マズローの欲求5段階説</h3><p>人間の欲求は低次のものから高次のものへと5段階のピラミッドを形成しており、低次の欲求が満たされると、より高次の欲求が現れるという理論です。</p><div class="text-center p-4"><div class="bg-blue-100 p-2 rounded-t-lg">⑤ 自己実現の欲求</div><div class="bg-blue-200 p-2">④ 承認（尊厳）の欲求</div><div class="bg-blue-300 p-2">③ 社会的欲求</div><div class="bg-blue-400 p-2">② 安全の欲求</div><div class="bg-blue-500 text-white p-2 rounded-b-lg">① 生理的欲求</div></div>`,
-        questions: [ { q: '製造、営業、人事など、職能ごとに部門を編成する組織形態はどれか？', options: ['事業部制組織', 'マトリックス組織', '機能別組織', 'プロジェクト組織'], answer: 2, explanation: '機能別組織は、専門的な職能（機能）に基づいて部門を構成する、古典的で基本的な組織形態です。' } ]
+      { id: '1-2', title: 'マクロ経済学の基礎', content: `<h3>GDP（国内総生産）</h3><p>マクロ経済学の中心的な指標で、一定期間内に国内で生産された付加価値の総額を示します。</p><h4>三面等価の原則</h4><p>GDPは「生産」「分配」「支出」の3つの側面から見ることができ、これらは事後的に必ず等しくなります。</p><ul><li><b>生産面</b>: 各産業が生み出した付加価値の合計</li><li><b>分配面</b>: 生産によって得られた所得（雇用者報酬、営業余剰など）の合計</li><li><b>支出面</b>: 生産されたものが最終的にどう使われたか（消費、投資、政府支出など）の合計</li></ul>`,
+        questions: [ 
+            { q: 'GDPの三面等価の原則に含まれないものはどれか？', options: ['生産', '分配', '支出', '金融'], answer: 3, explanation: '三面等価の原則は「生産」「分配」「支出」の3つの側面からGDPを捉えるもので、「金融」は含まれません。' },
+            { q: 'IS-LM分析において、政府が公共事業を拡大する財政政策を行った場合、IS曲線はどう動きますか？', options: ['右にシフトする', '左にシフトする', '動かない', 'LM曲線が動く'], answer: 0, explanation: '政府支出の増加は、財市場の均衡を示すIS曲線を右にシフトさせ、国民所得を増加させる方向に作用します。' }
+        ]
       },
-      { id: '1-3', title: 'マーケティング論', content: '（コンテンツ準備中）', questions: [] },
     ]
   },
-  { id: 2, category: '第1次試験', subject: '財務・会計', period: '2025年10月～12月',
+  { id: 2, category: '第1次試験', subject: '財務・会計', period: '2025年7月～8月',
     topics: [
       { id: '2-1', title: '財務諸表の基礎', content: `<h3>財務三表の関係性</h3><p>企業の財政状態と経営成績を示す財務諸表。特に重要なのが「貸借対照表(B/S)」「損益計算書(P/L)」「キャッシュフロー計算書(C/S)」の3つです。これらは互いに連動しています。</p><div class="overflow-x-auto p-4 bg-gray-50 rounded-lg"><div class="text-center font-bold text-lg mb-4">B/SとP/Lのつながり</div><div class="flex flex-col md:flex-row justify-around items-center"><div class="w-full md:w-1/3 mb-4 md:mb-0"><div class="font-bold text-center mb-1">期首 B/S</div><table class="w-full border-collapse text-sm"><tr><td class="border p-1 w-1/2">資産</td><td class="border p-1 w-1/2">負債</td></tr><tr><td class="border p-1 h-16 align-top"></td><td class="border p-1 h-8 align-top">純資産</td></tr></table></div><div class="w-full md:w-1/3 mb-4 md:mb-0 px-2"><div class="font-bold text-center mb-1">期間中の P/L</div><table class="w-full border-collapse text-sm"><tr><td class="border p-1 h-10 align-top">費用</td><td class="border p-1 h-10 align-top">収益</td></tr></table><div class="text-center mt-1">↓</div><div class="text-center font-bold bg-green-200 rounded p-1">当期純利益</div></div><div class="w-full md:w-1/3"><div class="font-bold text-center mb-1">期末 B/S</div><table class="w-full border-collapse text-sm"><tr><td class="border p-1 w-1/2">資産</td><td class="border p-1 w-1/2">負債</td></tr><tr><td class="border p-1 h-16 align-top"></td><td class="border p-1 h-8 align-top">純資産<br><small>(利益がここに蓄積)</small></td></tr></table></div></div><div class="text-center text-2xl font-bold my-2 text-blue-500">→</div></div><p class="mt-4">損益計算書で計算された「当期純利益」は、貸借対照表の「純資産（利益剰余金）」に加算されます。これにより、企業の1年間の活動が財産にどう反映されたかがわかります。</p>`,
-        questions: [ { q: '損益計算書（P/L）で計算された当期純利益は、最終的に貸借対照表（B/S）のどの項目に影響を与えるか？', options: ['資産', '負債', '純資産', '売上'], answer: 2, explanation: '当期純利益は、企業の儲けの蓄積である利益剰余金として、貸借対照表の純資産の部に加算されます。' } ]
+        questions: [ 
+            { q: '損益計算書（P/L）で計算された当期純利益は、最終的に貸借対照表（B/S）のどの項目に影響を与えるか？', options: ['資産', '負債', '純資産', '売上'], answer: 2, explanation: '当期純利益は、企業の儲けの蓄積である利益剰余金として、貸借対照表の純資産の部に加算されます。' },
+            { q: 'キャッシュフロー計算書において、商品の仕入れによる支出はどの活動に分類されるか？', options: ['営業活動', '投資活動', '財務活動', '分類されない'], answer: 0, explanation: '商品の仕入れや販売など、企業の本業に関わるキャッシュの動きは「営業活動によるキャッシュフロー」に分類されます。' }
+        ]
       },
-      { id: '2-2', title: '経営分析', content: '（コンテンツ準備中）', questions: [] },
-      { id: '2-3', title: 'CVP分析', content: '（コンテンツ準備中）', questions: [] },
+      { id: '2-2', title: '経営分析', content: `<h3>経営分析の主要指標</h3><p>企業の経営状態を評価するために、財務諸表の数値を用いて様々な指標を計算します。代表的なものに「収益性」「安全性」「効率性」の3つの観点があります。</p><h4>1. 収益性分析</h4><p>企業がどれだけ効率的に利益を上げているかを示します。</p><ul><li><b>総資本利益率 (ROA)</b> = 当期純利益 ÷ 総資本 × 100</li><li><b>自己資本利益率 (ROE)</b> = 当期純利益 ÷ 自己資本 × 100</li></ul><h4>2. 安全性分析</h4><p>企業の支払い能力や倒産リスクの低さを示します。</p><ul><li><b>流動比率</b> = 流動資産 ÷ 流動負債 × 100 （短期的な支払い能力）</li><li><b>自己資本比率</b> = 自己資本 ÷ 総資本 × 100 （長期的な安定性）</li></ul>`, 
+        questions: [ 
+            { q: '企業の短期的な支払い能力を分析するための指標として、最も適切なものはどれか？', options: ['自己資本利益率(ROE)', '流動比率', '総資本利益率(ROA)', '自己資本比率'], answer: 1, explanation: '流動比率は、1年以内に現金化できる資産（流動資産）が、1年以内に返済すべき負債（流動負債）をどれだけ上回っているかを示す指標であり、短期的な支払い能力を測るのに適しています。' },
+            { q: '総資本回転率が示すものは何か？', options: ['株主資本の収益性', '負債の返済能力', '総資本がどれだけ効率的に売上を生み出しているか', '資産の現金化の速さ'], answer: 2, explanation: '総資本回転率（売上高÷総資本）は、投下した総資本を使ってどれだけ効率的に売上を上げられたかを示す効率性の指標です。回転率が高いほど効率的とされます。' }
+        ] 
+      },
+      { id: '2-3', title: 'CVP分析', content: `<h3>CVP分析（損益分岐点分析）とは</h3><p>Cost(費用) - Volume(販売量) - Profit(利益)の関係を分析し、企業の利益計画を立てるための手法です。特に重要なのが<b>損益分岐点</b>の計算です。</p><h4>損益分岐点売上高</h4><p>利益がゼロ（売上と費用が等しくなる）となる売上高のことです。これを下回ると赤字、上回ると黒字になります。</p><p>計算式は以下の通りです。</p><p class="text-center font-bold bg-gray-100 p-4 rounded-lg">損益分岐点売上高 = 固定費 ÷ (1 - 変動費率)</p><p>または</p><p class="text-center font-bold bg-gray-100 p-4 rounded-lg">損益分岐点売上高 = 固定費 ÷ 貢献利益率</p><p>ここで、<b>変動費率</b>は売上高に対する変動費の割合、<b>貢献利益</b>は売上高から変動費を差し引いた利益のことです。</p>`,
+        questions: [ 
+            { q: '固定費が100万円、変動費率が60%である場合の損益分岐点売上高はいくらか？', options: ['167万円', '250万円', '400万円', '600万円'], answer: 1, explanation: '損益分岐点売上高 = 100万円 ÷ (1 - 0.6) = 100万円 ÷ 0.4 = 250万円 となります。' },
+            { q: 'CVP分析における「貢献利益」とは何か？', options: ['売上高 - 固定費', '売上高 - 変動費', '売上高 - 総費用', '営業利益 + 受取利息'], answer: 1, explanation: '貢献利益は、売上高から変動費を差し引いたもので、固定費を回収し利益を生み出すためにどれだけ貢献したかを示す利益です。' }
+        ] 
+      },
     ]
   },
-  // Other subjects are omitted for brevity
-];
-
-// --- アプリケーションのロジック ---
-document.addEventListener('DOMContentLoaded', () => {
-    // DOM Element selectors
-    const appContainer = document.getElementById('app');
-    const roadmapContainer = document.getElementById('roadmap-container');
-    const learningModal = document.getElementById('learning-modal');
-    const reviewModal = document.getElementById('review-modal');
-    const reviewQuizBtn = document.getElementById('review-quiz-btn');
-    const resetProgressBtn = document.getElementById('reset-progress-btn');
-
-    // State variables
-    let completedTopics = new Set();
-    let bookmarkedQuestions = new Set();
-    let activeTopic = null;
-    let userAnswers = {};
-    let subjectChart = null;
-
-    // --- データ保存・読込 ---
-    const loadProgress = () => {
-        const savedTopics = localStorage.getItem('sme_completedTopics');
-        const savedBookmarks = localStorage.getItem('sme_bookmarkedQuestions');
-        if (savedTopics) {
-            completedTopics = new Set(JSON.parse(savedTopics));
-        }
-        if (savedBookmarks) {
-            bookmarkedQuestions = new Set(JSON.parse(savedBookmarks));
-        }
-    };
-
-    const saveProgress = () => {
-        localStorage.setItem('sme_completedTopics', JSON.stringify([...completedTopics]));
-        localStorage.setItem('sme_bookmarkedQuestions', JSON.stringify([...bookmarkedQuestions]));
-    };
-    
-    const resetProgress = () => {
-        if (confirm('本当にすべての学習進捗とブックマークをリセットしますか？この操作は元に戻せません。')) {
-            localStorage.removeItem('sme_completedTopics');
-            localStorage.removeItem('sme_bookmarkedQuestions');
-            completedTopics.clear();
-            bookmarkedQuestions.clear();
-            renderAll();
-        }
-    };
-
-    // --- レンダリング関連 ---
-    const renderAll = () => {
-        renderDashboard();
-        renderRoadmap();
-    };
-
-    const renderDashboard = () => {
-        const allTopics = roadmapData.flatMap(s => s.topics);
-        const totalTopicsCount = allTopics.filter(t => t.content !== '（コンテンツ準備中）').length;
-        const completedCount = completedTopics.size;
-        const progress = totalTopicsCount > 0 ? Math.round((completedCount / totalTopicsCount) * 100) : 0;
-
-        document.getElementById('overall-progress-bar').style.width = `${progress}%`;
-        document.getElementById('overall-progress-text').innerText = `${progress}%`;
-        
-        // 科目ごと進捗グラフ
-        const ctx = document.getElementById('subject-progress-chart').getContext('2d');
-        const labels = roadmapData.map(s => s.subject);
-        const data = roadmapData.map(s => {
-            const subjectTopics = s.topics.filter(t => t.content !== '（コンテンツ準備中）');
-            const completedInSubject = subjectTopics.filter(t => completedTopics.has(t.id)).length;
-            return subjectTopics.length > 0 ? (completedInSubject / subjectTopics.length) * 100 : 0;
-        });
-
-        if(subjectChart) {
-            subjectChart.data.datasets[0].data = data;
-            subjectChart.update();
-        } else {
-            subjectChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: '科目別進捗率 (%)',
-                        data: data,
-                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    scales: {
-                        x: { beginAtZero: true, max: 100 }
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-        }
-    };
-    
-    const renderRoadmap = () => {
-        let html = `<div class="space-y-8">`;
-        roadmapData.forEach(stage => {
-            html += `<div class="bg-white p-4 md:p-6 rounded-xl shadow-md border border-gray-200"><div class="mb-4"><span class="inline-block px-3 py-1 text-sm font-semibold rounded-full ${stage.category === '第1次試験' ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800'}">${stage.category}</span><h2 class="text-xl md:text-2xl font-bold mt-2 text-gray-700">${stage.subject}</h2><p class="text-md text-gray-500">${stage.period}</p></div><div class="space-y-3">`;
-            stage.topics.forEach(topic => {
-                const status = getTopicStatus(topic);
-                const isLocked = status === 'locked';
-                const icon = {
-                    completed: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mr-3 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`,
-                    unlocked: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500 mr-3 flex-shrink-0"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`,
-                    locked: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mr-3 flex-shrink-0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`
-                };
-                html += `<div data-topic-id="${topic.id}" class="topic-item flex items-center justify-between p-4 rounded-lg transition-all duration-300 ${isLocked ? 'bg-gray-200 cursor-not-allowed' : 'bg-white border hover:shadow-lg hover:border-blue-500 cursor-pointer'}"><div class="flex items-center min-w-0">${icon[status]}<span class="font-medium truncate ${isLocked ? 'text-gray-500' : 'text-gray-800'}">${topic.title}</span></div>${!isLocked ? `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 flex-shrink-0"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>` : ''}</div>`;
-            });
-            html += `</div></div>`;
-        });
-        html += `</div>`;
-        roadmapContainer.innerHTML = html;
-        addTopicClickListeners();
-    };
-
-    // --- モーダル・クイズ関連 ---
-    const openModal = (topic) => {
-        activeTopic = topic;
-        userAnswers = {};
-        learningModal.innerHTML = createModalHtml('learning', topic);
-        document.body.classList.add('modal-open-body');
-        learningModal.classList.add('is-open');
-        addModalEventListeners('learning', topic);
-    };
-    
-    const closeModal = (type) => {
-        const modalToClose = type === 'learning' ? learningModal : reviewModal;
-        modalToClose.classList.remove('is-open');
-        document.body.classList.remove('modal-open-body');
-        activeTopic = null;
-    };
-
-    const handleNext = () => {
-        if (activeTopic) {
-            completedTopics.add(activeTopic.id);
-            saveProgress();
-            const flatTopics = roadmapData.flatMap(s => s.topics);
-            const currentIndex = flatTopics.findIndex(t => t.id === activeTopic.id);
-            closeModal('learning');
-            const nextTopic = flatTopics.find((t, index) => index > currentIndex && t.content !== '（コンテンツ準備中）');
-            if (nextTopic) {
-                setTimeout(() => openModal(nextTopic), 300);
-            }
-            renderAll();
-        }
-    };
-    
-    // --- ブックマーク・復習テスト関連 ---
-    const toggleBookmark = (topicId, qIndex) => {
-        const questionId = `${topicId}-${qIndex}`;
-        const btn = document.querySelector(`[data-question-id="${questionId}"]`);
-        if (bookmarkedQuestions.has(questionId)) {
-            bookmarkedQuestions.delete(questionId);
-            btn.classList.remove('bookmarked');
-        } else {
-            bookmarkedQuestions.add(questionId);
-            btn.classList.add('bookmarked');
-        }
-        saveProgress();
-    };
-    
-    const startReviewQuiz = () => {
-        const bookmarkedArr = [...bookmarkedQuestions];
-        if (bookmarkedArr.length === 0) {
-            alert('ブックマークされた問題がありません。まずは問題にブックマークを付けてください。');
-            return;
-        }
-        
-        // Shuffle and pick up to 10 questions
-        const shuffled = bookmarkedArr.sort(() => 0.5 - Math.random());
-        const selectedIds = shuffled.slice(0, 10);
-        
-        const reviewQuestions = selectedIds.map(id => {
-            const [topicId, qIndexStr] = id.split('-');
-            const qIndex = parseInt(qIndexStr, 10);
-            const topic = roadmapData.flatMap(s => s.topics).find(t => t.id === topicId);
-            return { ...topic.questions[qIndex], topicTitle: topic.title, topicId: topicId, originalIndex: qIndex };
-        });
-        
-        userAnswers = {};
-        reviewModal.innerHTML = createModalHtml('review', { title: '復習テスト', questions: reviewQuestions });
-        document.body.classList.add('modal-open-body');
-        reviewModal.classList.add('is-open');
-        addModalEventListeners('review', { questions: reviewQuestions });
-    };
-
-    // --- 汎用関数・イベントリスナー ---
-    const getTopicStatus = (topic) => {
-        if (completedTopics.has(topic.id)) return 'completed';
-        if (topic.content === '（コンテンツ準備中）') return 'locked';
-        const flatTopics = roadmapData.flatMap(s => s.topics);
-        const currentIndex = flatTopics.findIndex(t => t.id === topic.id);
-        if (currentIndex === 0) return 'unlocked';
-        const prevTopic = flatTopics[currentIndex - 1];
-        return completedTopics.has(prevTopic.id) ? 'unlocked' : 'locked';
-    };
-    
-    const addTopicClickListeners = () => {
-        document.querySelectorAll('.topic-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                const topicId = e.currentTarget.dataset.topicId;
-                const topic = roadmapData.flatMap(s => s.topics).find(t => t.id === topicId);
-                if (getTopicStatus(topic) !== 'locked') {
-                    openModal(topic);
-                } else {
-                    alert('前のトピックを完了するか、コンテンツの準備をお待ちください。');
-                }
-            });
-        });
-    };
-    
-    const createModalHtml = (type, data) => {
-        const isReview = type === 'review';
-        let quizHtml = '';
-        if (data.questions && data.questions.length > 0) {
-            quizHtml = `<div class="modal-quiz-container mt-8 pt-6 border-t"><h3 class="text-lg font-bold my-6 text-blue-600">${isReview ? '復習問題' : '理解度チェック'}</h3>`;
-            data.questions.forEach((q, qIndex) => {
-                const questionId = isReview ? `${q.topicId}-${q.originalIndex}` : `${data.id}-${qIndex}`;
-                const isBookmarked = bookmarkedQuestions.has(questionId);
-                quizHtml += `<div class="mb-6 p-4 border rounded-lg bg-gray-50">
-                    <div class="flex justify-between items-start">
-                        <p class="font-semibold mb-3 flex-1">問 ${qIndex + 1}: ${q.q}</p>
-                        ${!isReview ? `<button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" data-question-id="${questionId}" data-topic-id="${data.id}" data-q-index="${qIndex}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 hover:text-amber-500"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></button>` : ''}
-                    </div>
-                    ${isReview ? `<p class="text-sm text-gray-500 mb-2">（出題元: ${q.topicTitle}）</p>` : ''}
-                    <div class="space-y-2">`;
-                q.options.forEach((opt, oIndex) => {
-                    quizHtml += `<label class="block p-3 rounded-md border cursor-pointer hover:bg-gray-100"><input type="radio" name="q-${qIndex}" value="${oIndex}" class="mr-3">${opt}</label>`;
-                });
-                quizHtml += `</div><div class="quiz-explanation mt-3"></div></div>`;
-            });
-            quizHtml += `<button class="submit-quiz-btn w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 disabled:bg-gray-300" disabled>回答を確定する</button>`;
-            quizHtml += `</div>`;
-        }
-
-        return `
-            <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl h-full max-h-[95vh] flex flex-col">
-                <div class="p-4 border-b flex justify-between items-center flex-shrink-0">
-                    <h2 class="text-lg md:text-xl font-bold text-gray-800">${data.title}</h2>
-                    <button class="modal-close-btn text-gray-500 hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-                </div>
-                <div class="flex-grow overflow-y-auto p-4 md:p-6">
-                    ${!isReview ? `<div class="prose max-w-none">${data.content}</div>` : ''}
-                    ${quizHtml}
-                    ${!isReview ? `
-                    <div class="mt-8 pt-6 border-t">
-                        <h3 class="text-lg font-bold mb-4 text-purple-600 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="12" width="8" height="8" rx="2"/><path d="M8 12v-2a2 2 0 1 1 4 0v2"/><path d="M12 12h4"/><path d="M16 12h4"/><path d="M16 16v4"/><path d="M16 8v4"/></svg>わからないことをGeminiに質問する</h3>
-                        <div class="space-y-4">
-                            <textarea class="gemini-question-input w-full p-2 border rounded-lg" placeholder="例：SWOT分析の具体的な活用事例を教えてください。"></textarea>
-                            <button class="ask-gemini-btn w-full py-2 px-4 bg-purple-600 text-white font-bold rounded-lg flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>Geminiに質問する</button>
-                            <div class="gemini-response-container mt-4" style="display: none;">
-                                <div class="gemini-loading text-center py-4" style="display: none;"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div><p class="text-gray-600 mt-2">回答を生成中...</p></div>
-                                <div class="gemini-answer p-4 bg-gray-50 rounded-lg prose max-w-none text-gray-800"></div>
-                            </div>
-                        </div>
-                    </div>` : ''}
-                </div>
-                <div class="p-4 border-t bg-gray-50 flex justify-end flex-shrink-0">
-                    ${!isReview ? `<button class="modal-next-btn flex items-center gap-2 py-2 px-5 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700">次のコンテンツへ<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>` : `<button class="modal-close-btn py-2 px-5 bg-gray-500 text-white font-bold rounded-lg hover:bg-gray-600">閉じる</button>`}
-                </div>
-            </div>
-        `;
-    };
-    
-    const addModalEventListeners = (type, data) => {
-        const modalEl = type === 'learning' ? learningModal : reviewModal;
-        
-        modalEl.querySelector('.modal-close-btn').addEventListener('click', () => closeModal(type));
-        if (type === 'learning') {
-            modalEl.querySelector('.modal-next-btn').addEventListener('click', handleNext);
-        }
-
-        // Quiz listeners
-        const submitBtn = modalEl.querySelector('.submit-quiz-btn');
-        if (submitBtn) {
-            const radios = modalEl.querySelectorAll('input[type="radio"]');
-            const checkAllAnswered = () => { if(Object.keys(userAnswers).length === data.questions.length) { submitBtn.disabled = false; } };
-            radios.forEach(radio => {
-                radio.addEventListener('change', (e) => {
-                    const qIndex = parseInt(e.target.name.split('-')[1]);
-                    userAnswers[qIndex] = parseInt(e.target.value);
-                    checkAllAnswered();
-                });
-            });
-            submitBtn.addEventListener('click', () => {
-                submitBtn.style.display = 'none';
-                radios.forEach(r => r.disabled = true);
-                data.questions.forEach((q, qIndex) => {
-                    const isCorrect = q.answer === userAnswers[qIndex];
-                    const parentLabel = radios[qIndex * q.options.length].closest('label').parentElement;
-                    parentLabel.querySelector(`label:nth-child(${userAnswers[qIndex] + 1})`).classList.add(isCorrect ? 'bg-green-100' : 'bg-red-100');
-                    if (!isCorrect) {
-                         parentLabel.querySelector(`label:nth-child(${q.answer + 1})`).classList.add('bg-green-100');
-                    }
-                    const explanationEl = parentLabel.parentElement.querySelector('.quiz-explanation');
-                    explanationEl.innerHTML = `<div class="p-3 rounded-md bg-blue-50 text-blue-800 border border-blue-200"><p class="font-bold">正解：${q.options[q.answer]}</p><p class="mt-1 text-sm">${q.explanation}</p></div>`;
-                });
-            });
-        }
-        
-        // Bookmark listeners
-        modalEl.querySelectorAll('.bookmark-btn').forEach(btn => {
-            btn.addEventListener('click', () => toggleBookmark(btn.dataset.topicId, btn.dataset.qIndex));
-        });
-        
-        // Gemini listener
-        const askBtn = modalEl.querySelector('.ask-gemini-btn');
-        if (askBtn) {
-            askBtn.addEventListener('click', async () => {
-                const questionInput = modalEl.querySelector('.gemini-question-input');
-                const question = questionInput.value;
-                if (!question.trim()) { alert('質問を入力してください。'); return; }
-
-                const responseContainer = modalEl.querySelector('.gemini-response-container');
-                const loading = modalEl.querySelector('.gemini-loading');
-                const answerDiv = modalEl.querySelector('.gemini-answer');
-
-                responseContainer.style.display = 'block';
-                answerDiv.style.display = 'none';
-                loading.style.display = 'block';
-
-                try {
-                    const prompt = `あなたは中小企業診断士の試験に非常に詳しい専門家です。以下の学習トピックに関する質問に対して、受験生に分かりやすく、丁寧かつ正確に回答してください。\n\n学習トピック: 「${activeTopic.title}」\n\n質問:\n「${question}」\n\n回答:`;
-                    let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-                    const payload = { contents: chatHistory };
-                    const apiKey = "AIzaSyACs-eSxZdBCAtPaVMcDKEG9TEGFFyk4YM"; // あなたのAPIキーをここに貼り付けてください
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                    
-                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                    if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
-                    const result = await response.json();
-                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text || '申し訳ありません、回答を生成できませんでした。';
-                    answerDiv.innerHTML = marked.parse(text);
-                } catch (error) {
-                    console.error('Gemini API call failed:', error);
-                    answerDiv.innerHTML = '<p class="text-red-500">エラーが発生しました。時間をおいて再度お試しください。</p>';
-                } finally {
-                    loading.style.display = 'none';
-                    answerDiv.style.display = 'block';
-                }
-            });
-        }
-    };
-
-    // --- 初期化 ---
-    loadProgress();
-    renderAll();
-    reviewQuizBtn.addEventListener('click', startReviewQuiz);
-    resetProgressBtn.addEventListener('click', resetProgress);
-});
-</script>
-
-</body>
-</html>
+  { id: 3, category: '第1次試験', subject: '企業経営理論', period: '2025年9月～10月',
+    topics: [
+      { id: '3-1', title: '経営戦略論の基礎', content: `<h3>経営戦略とは？</h3><p>企業が持つ経営資源（ヒト・モノ・カネ・情報）を、競争優位を築くためにどのように配分するかという、長期的かつ全体的な計画のことです。</p><hr /><h3>主要なフレームワーク</h3><h4>1. SWOT分析</h4><p>企業の内部環境と外部環境を「強み(S)」「弱み(W)」「機会(O)」「脅威(T)」の4つに分けて分析する手法です。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-center"><thead><tr><th class="border p-2" colspan="2" rowspan="2"></th><th class="border p-2 bg-gray-100" colspan="2">内部環境</th></tr><tr><th class="border p-2 bg-blue-50">強み (Strengths)</th><th class="border p-2 bg-blue-50">弱み (Weaknesses)</th></tr></thead><tbody><tr><th class="border p-2 bg-gray-100 align-middle" rowspan="2"><div style="writing-mode:vertical-rl;" class="mx-auto">外部環境</div></th><th class="border p-2 bg-green-50">機会 (Opportunities)</th><td class="border p-2"><b>SO戦略 (積極化)</b><br><small>強みを活かし機会を捉える</small></td><td class="border p-2"><b>WO戦略 (段階的)</b><br><small>弱みを克服し機会を捉える</small></td></tr><tr><th class="border p-2 bg-green-50">脅威 (Threats)</th><td class="border p-2"><b>ST戦略 (差別化)</b><br><small>強みを活かし脅威を回避</small></td><td class="border p-2"><b>WT戦略 (防衛/撤退)</b><br><small>最悪事態を回避する</small></td></tr></tbody></table></div><br><h4>2. 5フォース分析</h4><p>業界の収益性を決める5つの競争要因（フォース）を分析し、業界の構造や魅力を明らかにします。</p><div class="overflow-x-auto"><table class="w-full border-none text-center text-sm"><tbody><tr><td></td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg">新規参入の脅威</td><td></td></tr><tr><td></td><td class="text-2xl text-red-500 leading-none">↓</td><td></td></tr><tr><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg w-1/3">売り手の交渉力</td><td class="p-4 border-2 border-red-400 bg-red-100 rounded-lg font-bold">← 既存企業同士の競争 →</td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg w-1/3">買い手の交渉力</td></tr><tr><td></td><td class="text-2xl text-red-500 leading-none">↑</td><td></td></tr><tr><td></td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg">代替品の脅威</td><td></td></tr></tbody></table></div><br><h4>3. PPM (Product Portfolio Management)</h4><p>事業を「市場成長率」と「市場シェア」の2軸で評価し、経営資源の最適な配分を決定します。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-center"><thead><tr><th class="border p-2" colspan="2" rowspan="2"></th><th class="border p-2 bg-gray-100" colspan="2">相対的市場シェア</t
