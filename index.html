@@ -202,4 +202,840 @@ const roadmapData = [
   },
   { id: 3, category: '第1次試験', subject: '企業経営理論', period: '2025年9月～10月',
     topics: [
-      { id: '3-1', title: '経営戦略論の基礎', content: `<h3>経営戦略とは？</h3><p>企業が持つ経営資源（ヒト・モノ・カネ・情報）を、競争優位を築くためにどのように配分するかという、長期的かつ全体的な計画のことです。</p><hr /><h3>主要なフレームワーク</h3><h4>1. SWOT分析</h4><p>企業の内部環境と外部環境を「強み(S)」「弱み(W)」「機会(O)」「脅威(T)」の4つに分けて分析する手法です。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-center"><thead><tr><th class="border p-2" colspan="2" rowspan="2"></th><th class="border p-2 bg-gray-100" colspan="2">内部環境</th></tr><tr><th class="border p-2 bg-blue-50">強み (Strengths)</th><th class="border p-2 bg-blue-50">弱み (Weaknesses)</th></tr></thead><tbody><tr><th class="border p-2 bg-gray-100 align-middle" rowspan="2"><div style="writing-mode:vertical-rl;" class="mx-auto">外部環境</div></th><th class="border p-2 bg-green-50">機会 (Opportunities)</th><td class="border p-2"><b>SO戦略 (積極化)</b><br><small>強みを活かし機会を捉える</small></td><td class="border p-2"><b>WO戦略 (段階的)</b><br><small>弱みを克服し機会を捉える</small></td></tr><tr><th class="border p-2 bg-green-50">脅威 (Threats)</th><td class="border p-2"><b>ST戦略 (差別化)</b><br><small>強みを活かし脅威を回避</small></td><td class="border p-2"><b>WT戦略 (防衛/撤退)</b><br><small>最悪事態を回避する</small></td></tr></tbody></table></div><br><h4>2. 5フォース分析</h4><p>業界の収益性を決める5つの競争要因（フォース）を分析し、業界の構造や魅力を明らかにします。</p><div class="overflow-x-auto"><table class="w-full border-none text-center text-sm"><tbody><tr><td></td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg">新規参入の脅威</td><td></td></tr><tr><td></td><td class="text-2xl text-red-500 leading-none">↓</td><td></td></tr><tr><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg w-1/3">売り手の交渉力</td><td class="p-4 border-2 border-red-400 bg-red-100 rounded-lg font-bold">← 既存企業同士の競争 →</td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg w-1/3">買い手の交渉力</td></tr><tr><td></td><td class="text-2xl text-red-500 leading-none">↑</td><td></td></tr><tr><td></td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg">代替品の脅威</td><td></td></tr></tbody></table></div><br><h4>3. PPM (Product Portfolio Management)</h4><p>事業を「市場成長率」と「市場シェア」の2軸で評価し、経営資源の最適な配分を決定します。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-center"><thead><tr><th class="border p-2" colspan="2" rowspan="2"></th><th class="border p-2 bg-gray-100" colspan="2">相対的市場シェア</t
+      { id: '3-1', title: '経営戦略論の基礎', content: `<h3>経営戦略とは？</h3><p>企業が持つ経営資源（ヒト・モノ・カネ・情報）を、競争優位を築くためにどのように配分するかという、長期的かつ全体的な計画のことです。</p><hr /><h3>主要なフレームワーク</h3><h4>1. SWOT分析</h4><p>企業の内部環境と外部環境を「強み(S)」「弱み(W)」「機会(O)」「脅威(T)」の4つに分けて分析する手法です。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-center"><thead><tr><th class="border p-2" colspan="2" rowspan="2"></th><th class="border p-2 bg-gray-100" colspan="2">内部環境</th></tr><tr><th class="border p-2 bg-blue-50">強み (Strengths)</th><th class="border p-2 bg-blue-50">弱み (Weaknesses)</th></tr></thead><tbody><tr><th class="border p-2 bg-gray-100 align-middle" rowspan="2"><div style="writing-mode:vertical-rl;" class="mx-auto">外部環境</div></th><th class="border p-2 bg-green-50">機会 (Opportunities)</th><td class="border p-2"><b>SO戦略 (積極化)</b><br><small>強みを活かし機会を捉える</small></td><td class="border p-2"><b>WO戦略 (段階的)</b><br><small>弱みを克服し機会を捉える</small></td></tr><tr><th class="border p-2 bg-green-50">脅威 (Threats)</th><td class="border p-2"><b>ST戦略 (差別化)</b><br><small>強みを活かし脅威を回避</small></td><td class="border p-2"><b>WT戦略 (防衛/撤退)</b><br><small>最悪事態を回避する</small></td></tr></tbody></table></div><br><h4>2. 5フォース分析</h4><p>業界の収益性を決める5つの競争要因（フォース）を分析し、業界の構造や魅力を明らかにします。</p><div class="overflow-x-auto"><table class="w-full border-none text-center text-sm"><tbody><tr><td></td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg">新規参入の脅威</td><td></td></tr><tr><td></td><td class="text-2xl text-red-500 leading-none">↓</td><td></td></tr><tr><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg w-1/3">売り手の交渉力</td><td class="p-4 border-2 border-red-400 bg-red-100 rounded-lg font-bold">← 既存企業同士の競争 →</td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg w-1/3">買い手の交渉力</td></tr><tr><td></td><td class="text-2xl text-red-500 leading-none">↑</td><td></td></tr><tr><td></td><td class="p-2 border border-blue-200 bg-blue-50 rounded-lg">代替品の脅威</td><td></td></tr></tbody></table></div><br><h4>3. PPM (Product Portfolio Management)</h4><p>事業を「市場成長率」と「市場シェア」の2軸で評価し、経営資源の最適な配分を決定します。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-center"><thead><tr><th class="border p-2" colspan="2" rowspan="2"></th><th class="border p-2 bg-gray-100" colspan="2">相対的市場シェア</th></tr><tr><th class="border p-2 bg-yellow-50">高</th><th class="border p-2 bg-yellow-50">低</th></tr></thead><tbody><tr><th class="border p-2 bg-gray-100 align-middle" rowspan="2"><div style="writing-mode:vertical-rl;" class="mx-auto">市場成長率</div></th><th class="border p-2 bg-green-50">高</th><td class="border p-2 bg-yellow-100"><b>花形 (Star)</b><br><small>投資を継続しシェアを維持</small></td><td class="border p-2 bg-orange-100"><b>問題児 (Problem Child)</b><br><small>強化か撤退かを選択</small></td></tr><tr><th class="border p-2 bg-green-50">低</th><td class="border p-2 bg-green-100"><b>金のなる木 (Cash Cow)</b><br><small>利益を他事業へ投資</small></td><td class="border p-2 bg-red-100"><b>負け犬 (Dog)</b><br><small>事業の縮小・撤退を検討</small></td></tr></tbody></table></div>`,
+        questions: [ 
+            { q: '企業の内部環境と外部環境を分析し、戦略立案に役立てるフレームワークは次のうちどれか？', options: ['5フォース分析', 'PPM', 'SWOT分析', 'アンゾフの成長マトリクス'], answer: 2, explanation: 'SWOT分析は、強み(S)・弱み(W)という内部環境と、機会(O)・脅威(T)という外部環境を分析する手法です。' }, 
+            { q: 'アンゾフの成長マトリクスにおいて、「既存市場」に「新製品」を投入する戦略を何と呼ぶか？', options: ['市場浸透戦略', '新製品開発戦略', '新市場開拓戦略', '多角化戦略'], answer: 1, explanation: '既存の顧客や市場に対して、新しい製品やサービスを開発・投入する戦略を「新製品開発戦略」と呼びます。' }
+        ]
+      },
+      { id: '3-2', title: '組織論の基礎', content: `<h3>組織構造の基本形態</h3><p>企業の戦略を実行するための枠組みが組織構造です。代表的な形態には以下のようなものがあります。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-left"><thead><tr class="bg-gray-100"><th class="border p-2">形態</th><th class="border p-2">特徴</th><th class="border p-2">メリット</th><th class="border p-2">デメリット</th></tr></thead><tbody><tr><td class="border p-2 font-bold">機能別組織</td><td class="border p-2">製造、営業、経理など職能（機能）ごとに部門を編成する。</td><td class="border p-2">専門性の向上、規模の経済性</td><td class="border p-2">部門間の対立、意思決定の遅延</td></tr><tr><td class="border p-2 font-bold">事業部制組織</td><td class="border p-2">製品別、地域別など事業単位で自己完結的な組織を作る。</td><td class="border p-2">迅速な意思決定、業績評価が明確</td><td class="border p-2">資源の重複、全社的視点の欠如</td></tr><tr><td class="border p-2 font-bold">マトリックス組織</td><td class="border p-2">機能別と事業部制を組み合わせ、1人が複数の指揮命令系統に属する。</td><td class="border p-2">柔軟な対応、資源の有効活用</td><td class="border p-2">指揮命令の混乱、コンフリクト</td></tr></tbody></table></div><br><h3>モチベーション理論：マズローの欲求5段階説</h3><p>人間の欲求は低次のものから高次のものへと5段階のピラミッドを形成しており、低次の欲求が満たされると、より高次の欲求が現れるという理論です。</p><div class="text-center p-4"><div class="bg-blue-100 p-2 rounded-t-lg">⑤ 自己実現の欲求</div><div class="bg-blue-200 p-2">④ 承認（尊厳）の欲求</div><div class="bg-blue-300 p-2">③ 社会的欲求</div><div class="bg-blue-400 p-2">② 安全の欲求</div><div class="bg-blue-500 text-white p-2 rounded-b-lg">① 生理的欲求</div></div>`,
+        questions: [ 
+            { q: '製造、営業、人事など、職能ごとに部門を編成する組織形態はどれか？', options: ['事業部制組織', 'マトリックス組織', '機能別組織', 'プロジェクト組織'], answer: 2, explanation: '機能別組織は、専門的な職能（機能）に基づいて部門を構成する、古典的で基本的な組織形態です。' },
+            { q: 'マズローの欲求5段階説において、「他者から尊敬されたい、認められたい」という欲求はどの段階に該当するか？', options: ['生理的欲求', '社会的欲求', '承認の欲求', '自己実現の欲求'], answer: 2, explanation: '承認（尊厳）の欲求は、他者からの承認や尊敬を求める高次の欲求であり、社会的欲求が満たされた次に現れるとされています。' }
+        ]
+      },
+      { id: '3-3', title: 'マーケティング論', content: `<h3>マーケティングの基本：4P理論</h3><p>マーケティング戦略を立案する際に中心となる4つの要素（マーケティング・ミックス）です。企業がコントロール可能な要素であり、これらを効果的に組み合わせることが重要です。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-left"><thead><tr class="bg-gray-100"><th class="border p-2">要素</th><th class="border p-2">英語</th><th class="border p-2">内容</th><th class="border p-2">具体例</th></tr></thead><tbody><tr><td class="border p-2 font-bold">製品戦略</td><td class="border p-2">Product</td><td class="border p-2">顧客に提供する製品・サービスそのものに関する戦略。</td><td class="border p-2">品質、デザイン、ブランド名、パッケージ、保証など</td></tr><tr><td class="border p-2 font-bold">価格戦略</td><td class="border p-2">Price</td><td class="border p-2">製品・サービスの価格設定に関する戦略。</td><td class="border p-2">定価、割引、支払条件、クレジットなど</td></tr><tr><td class="border p-2 font-bold">流通戦略</td><td class="border p-2">Place</td><td class="border p-2">製品・サービスを顧客に届けるための経路に関する戦略。</td><td class="border p-2">チャネル、立地、在庫、輸送、配送など</td></tr><tr><td class="border p-2 font-bold">プロモーション戦略</td><td class="border p-2">Promotion</td><td class="border p-2">製品・サービスの存在や魅力を顧客に知らせ、購買を促す戦略。</td><td class="border p-2">広告、販売促進、PR、人的販売など</td></tr></tbody></table></div>`, 
+        questions: [ 
+            { q: 'マーケティングの4P理論に含まれないものは次のうちどれか？', options: ['製品 (Product)', '価格 (Price)', '人材 (People)', 'プロモーション (Promotion)'], answer: 2, explanation: '4Pは製品(Product)、価格(Price)、流通(Place)、プロモーション(Promotion)で構成されます。人材(People)はサービス・マーケティングの7Pに含まれる要素です。' },
+            { q: '消費者が製品を認知し、興味を持ち、購入に至るまでの心理的なプロセスを示すモデルとして最も有名なものはどれか？', options: ['AIDMAの法則', 'PPM分析', 'ファイブフォース分析', 'BCGマトリクス'], answer: 0, explanation: 'AIDMA（アイドマ）の法則は、Attention（注意）、Interest（関心）、Desire（欲求）、Memory（記憶）、Action（行動）の頭文字を取ったもので、消費者の購買決定プロセスを説明する古典的なモデルです。' }
+        ] 
+      },
+    ]
+  },
+  { id: 4, category: '第1次試験', subject: '運営管理', period: '2025年11月～12月',
+    topics: [
+      { id: '4-1', title: '生産管理の基礎 (QCD)', content: `<h3>生産管理の目標：QCD</h3><p>生産活動を管理する上で最も重要な3つの指標がQCDです。これらはトレードオフの関係にあることが多く、バランスを取ることが求められます。</p><ul><li><b>Quality (品質)</b>: 製品やサービスが顧客の要求仕様を満たしている度合い。</li><li><b>Cost (原価)</b>: 製品やサービスを生産するためにかかる費用。</li><li><b>Delivery (納期)</b>: 顧客に製品やサービスを届けるまでの時間や、約束した期日を守ること。</li></ul>`,
+        questions: [ 
+            { q: '生産管理におけるQCDの「D」が示すものは何か？', options: ['データ (Data)', 'デザイン (Design)', '納期 (Delivery)', '開発 (Development)'], answer: 2, explanation: 'QCDのDはDelivery（納期）を指します。顧客に約束した期日通りに製品を届けることは、信頼性の観点から非常に重要です。' },
+            { q: 'QC7つ道具に含まれないものは次のうちどれか？', options: ['パレート図', '特性要因図', 'SWOT分析', 'ヒストグラム'], answer: 2, explanation: 'SWOT分析は経営戦略を策定するためのフレームワークであり、品質管理（QC）で用いられるQC7つ道具には含まれません。' }
+        ]
+      },
+      { id: '4-2', title: '店舗・商業集積', content: `<h3>店舗レイアウト</h3><p>顧客の購買行動を促進し、店舗の収益性を高めるために、商品や設備の配置を計画することです。</p><h4>主な店舗レイアウトの型</h4><ul><li><b>格子型（グリッド型）</b>: スーパーマーケットやドラッグストアでよく見られる、直線的な通路を格子状に配置したレイアウト。商品の陳列効率が高い。</li><li><b>自由流線型（フリーフロー型）</b>: 曲線的な通路を自由に配置したレイアウト。百貨店やブティックなどで見られ、顧客の回遊性を高める効果がある。</li></ul>`,
+        questions: [ 
+            { q: 'スーパーマーケットで一般的に採用される、直線的な通路を効率的に配置した店舗レイアウトの型はどれか？', options: ['自由流線型', 'ループ型', '格子型', '放射型'], answer: 2, explanation: '格子型（グリッド型）レイアウトは、陳列効率と管理のしやすさから、多くのスーパーマーケットや量販店で採用されています。' },
+            { q: '顧客の店内での動線を分析し、非計画的な購買（衝動買い）を誘発することを狙った商品陳列を何と呼ぶか？', options: ['インストアマーチャンダイジング', 'サプライチェーンマネジメント', 'カテゴリーマネジメント', 'ダイレクトマーケティング'], answer: 0, explanation: 'インストアマーチャンダイジング（ISM）は、店舗内での顧客の購買心理や行動を分析し、それに基づいて商品の陳列やレイアウトを最適化する活動全般を指します。' }
+        ]
+      },
+    ]
+  },
+  { id: 5, category: '第1次試験', subject: '経営法務', period: '2026年1月～2月',
+    topics: [
+      { id: '5-1', title: '会社法の基礎', content: `<h3>株式会社の機関</h3><p>会社法では、株式会社が備えるべき機関が定められています。株主総会は最高の意思決定機関であり、すべての株式会社で設置が義務付けられています。</p><ul><li><b>株主総会</b>: 会社の所有者である株主によって構成される、会社の基本方針を決定する機関。</li><li><b>取締役（会）</b>: 株主総会の決議に基づき、会社の業務執行を行う機関。</li><li><b>監査役（会）</b>: 取締役の職務執行が適正に行われているかを監査する機関。</li></ul>`,
+        questions: [ 
+            { q: '株式会社において、必ず設置しなければならない機関はどれか？', options: ['取締役会', '監査役会', '株主総会', '会計参与'], answer: 2, explanation: '株主総会は、会社の所有者である株主の権利を守るための最高の意思決定機関であり、すべての株式会社で設置が義務付けられています。' },
+            { q: '会社の合併や解散など、特に重要な事項を決議する株主総会の決議を何と呼ぶか？', options: ['普通決議', '特別決議', '特殊決議', '任意決議'], answer: 1, explanation: '特別決議は、定款変更や合併、解散など会社の根幹に関わる重要事項を決定するためのもので、普通決議よりも厳しい定足数と賛成要件が課せられています。' }
+        ]
+      },
+      { id: '5-2', title: '知的財産権', content: `<h3>知的財産権の分類</h3><p>人間の知的創造活動によって生み出されたアイデアや創作物などを保護するための権利です。大きく分けて、産業財産権と著作権に分類されます。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-left"><thead><tr class="bg-gray-100"><th class="border p-2">権利</th><th class="border p-2">保護対象</th><th class="border p-2">特徴</th></tr></thead><tbody><tr><td class="border p-2 font-bold">特許権</td><td class="border p-2">発明（技術的なアイデア）</td><td class="border p-2">新規性・進歩性などが必要。審査を経て登録。</td></tr><tr><td class="border p-2 font-bold">実用新案権</td><td class="border p-2">物品の形状・構造に関する考案</td><td class="border p-2">特許より保護期間が短く、無審査で登録可能。</td></tr><tr><td class="border p-2 font-bold">意匠権</td><td class="border p-2">物品のデザイン</td><td class="border p-2">見た目の美しさや斬新さを保護。</td></tr><tr><td class="border p-2 font-bold">商標権</td><td class="border p-2">商品・サービスのマーク</td><td class="border p-2">自社と他社の商品を区別するための文字や図形を保護。</td></tr><tr><td class="border p-2 font-bold">著作権</td><td class="border p-2">思想・感情の創作的な表現</td><td class="border p-2">文芸、学術、美術、音楽など。創作した時点で自動的に発生。</td></tr></tbody></table></div>`,
+        questions: [ 
+            { q: '小説や音楽、絵画などの創作物を保護し、創作した時点で自動的に発生する権利はどれか？', options: ['特許権', '意匠権', '商標権', '著作権'], answer: 3, explanation: '著作権は、思想や感情を創作的に表現した著作物を保護する権利で、特許権などとは異なり、登録などの手続きを必要とせず創作と同時に自動的に発生します（無方式主義）。' },
+            { q: '企業の秘密情報（顧客リストや製造ノウハウなど）を法的に保護する法律はどれか？', options: ['特許法', '著作権法', '不正競争防止法', '独占禁止法'], answer: 2, explanation: '不正競争防止法では、有用性、秘密管理性、非公知性の3要件を満たす企業の営業秘密を法的に保護しています。' }
+        ]
+      },
+    ]
+  },
+  { id: 6, category: '第1次試験', subject: '経営情報システム', period: '2026年3月～4月',
+    topics: [
+      { id: '6-1', title: '情報技術の基礎', content: `<h3>ハードウェアとソフトウェア</h3><p>コンピュータシステムは、物理的な実体であるハードウェアと、処理手順を命令するソフトウェアから構成されます。</p><h4>コンピュータの5大装置</h4><p>ハードウェアは、以下の5つの装置から構成されます。</p><ol><li><b>入力装置</b>: キーボード、マウスなど</li><li><b>出力装置</b>: ディスプレイ、プリンタなど</li><li><b>記憶装置</b>: メモリ（主記憶）、ハードディスク（補助記憶）など</li><li><b>演算装置</b>: 四則演算や論理演算を行う (CPUの一部)</li><li><b>制御装置</b>: 各装置の動作を制御する (CPUの一部)</li></ol><p>CPU (中央処理装置) は、演算装置と制御装置を合わせたものです。</p>`,
+        questions: [ 
+            { q: 'コンピュータの5大装置のうち、CPUに含まれるものはどれか？', options: ['入力装置と出力装置', '記憶装置と制御装置', '演算装置と制御装置', '入力装置と記憶装置'], answer: 2, explanation: 'CPU（中央処理装置）は、計算を行う演算装置と、命令を解釈し各装置を制御する制御装置から構成されます。' },
+            { q: 'ネットワーク通信におけるプロトコル（通信規約）を階層的に定義したOSI基本参照モデルにおいて、第3層にあたるものはどれか？', options: ['物理層', 'データリンク層', 'ネットワーク層', 'トランスポート層'], answer: 2, explanation: 'OSI基本参照モデルの第3層はネットワーク層であり、異なるネットワーク間の通信経路を選択する役割（ルーティング）を担います。' }
+        ]
+      },
+      { id: '6-2', title: 'データベースの基礎', content: `<h3>データベース管理システム (DBMS)</h3><p>データベースを効率的かつ安全に管理するためのソフトウェアです。データの独立性を保ち、複数の利用者からの同時アクセスを制御する機能などを提供します。</p><h4>リレーショナルデータベース (RDB)</h4><p>現在最も広く利用されているデータベースのモデルで、データを二次元の表（テーブル）形式で管理します。SQLという言語を用いてデータの操作を行います。</p><h4>SQLの基本命令</h4><ul><li><b>SELECT</b>: データの検索・抽出</li><li><b>INSERT</b>: データの新規登録</li><li><b>UPDATE</b>: データの更新</li><li><b>DELETE</b>: データの削除</li></ul>`,
+        questions: [ 
+            { q: 'リレーショナルデータベースにおいて、データを検索・抽出するために用いられるSQLの命令はどれか？', options: ['INSERT', 'UPDATE', 'DELETE', 'SELECT'], answer: 3, explanation: 'SELECT文は、テーブルから条件に合ったデータを検索し、取り出すための命令です。' },
+            { q: 'データベースのテーブルにおいて、データの重複をなくし、整合性を保つために行われる設計作業を何と呼ぶか？', options: ['最適化', '正規化', '暗号化', '初期化'], answer: 1, explanation: '正規化は、リレーショナルデータベースの設計において、データの冗長性を排除し、更新時の不整合を防ぐためにテーブルを分割するプロセスです。' }
+        ]
+      },
+    ]
+  },
+  { id: 7, category: '第1次試験', subject: '中小企業経営・政策', period: '2026年5月～6月',
+    topics: [
+      { id: '7-1', title: '中小企業基本法', content: `<h3>中小企業者の定義</h3><p>中小企業基本法では、業種ごとに「資本金の額または出資の総額」と「常時使用する従業員の数」の2つの基準で中小企業者を定義しています。</p><div class="overflow-x-auto"><table class="w-full border-collapse mt-4 text-left"><thead><tr class="bg-gray-100"><th class="border p-2">業種</th><th class="border p-2">資本金基準</th><th class="border p-2">従業員数基準</th></tr></thead><tbody><tr><td class="border p-2 font-bold">製造業、建設業、運輸業など</td><td class="border p-2">3億円以下</td><td class="border p-2">300人以下</td></tr><tr><td class="border p-2 font-bold">卸売業</td><td class="border p-2">1億円以下</td><td class="border p-2">100人以下</td></tr><tr><td class="border p-2 font-bold">サービス業</td><td class="border p-2">5,000万円以下</td><td class="border p-2">100人以下</td></tr><tr><td class="border p-2 font-bold">小売業</td><td class="border p-2">5,000万円以下</td><td class="border p-2">50人以下</td></tr></tbody></table></div><p>上記の基準の<b>いずれかを満たせば</b>中小企業者とされます。</p>`,
+        questions: [ 
+            { q: '中小企業基本法において、小売業が中小企業者として定義されるための従業員数基準はどれか？', options: ['300人以下', '100人以下', '50人以下', '20人以下'], answer: 2, explanation: '小売業の場合、資本金5,000万円以下または常時使用する従業員の数50人以下のいずれかを満たす企業が中小企業者と定義されます。' },
+            { q: '中小企業基本法で定義される「小規模企業者」について、商業・サービス業の場合の常時使用する従業員数の基準はどれか？', options: ['5人以下', '10人以下', '20人以下', '50人以下'], answer: 0, explanation: '小規模企業者は中小企業者の中でも特に規模の小さい事業者であり、商業・サービス業では常時使用する従業員の数が5人以下の企業と定義されています。' }
+        ]
+      },
+      { id: '7-2', title: '中小企業支援策', content: `<h3>代表的な支援策</h3><p>国や地方自治体は、中小企業の成長を支援するために様々な施策を実施しています。</p><ul><li><b>補助金・助成金</b>: 新事業展開や設備投資など、特定の目的のために資金の一部を給付する制度。返済は不要。例：ものづくり補助金、事業再構築補助金など。</li><li><b>融資制度</b>: 日本政策金融公庫など政府系金融機関による低利での融資や、信用保証協会による債務保証など、資金調達を支援する制度。</li><li><b>専門家派遣</b>: 経営課題を抱える中小企業に対して、中小企業診断士などの専門家を派遣し、アドバイスを行う制度。</li></ul><p class="text-sm mt-4">※最終更新日: 2025年7月18日。最新の情報は中小企業庁のウェブサイト等でご確認ください。</p>`,
+        questions: [ 
+            { q: '国や自治体が、企業の特定の取り組み（設備投資や販路開拓など）に対して資金の一部を給付する、返済不要の支援制度を一般に何と呼ぶか？', options: ['融資', '出資', '補助金・助成金', '債務保証'], answer: 2, explanation: '補助金や助成金は、国や自治体の政策目標に合致した事業を行う事業者に対して交付される返済不要の資金です。' },
+            { q: '中小企業が金融機関から融資を受ける際に、その債務を公的に保証することで資金調達を円滑にする機関はどれか？', options: ['日本政策金融公庫', '商工会議所', '信用保証協会', '中小企業基盤整備機構'], answer: 2, explanation: '信用保証協会は、中小企業の金融円滑化のために設立された公的機関で、融資の際の保証人となることで、企業の信用力を補完します。' }
+        ]
+      }
+    ]
+  },
+  { id: 8, category: '第2次筆記試験', subject: '事例 I・II・III・IV', period: '2026年8月～10月',
+    topics: [
+      { id: '8-1', title: '事例 I (組織・人事)', content: `<h3>事例 I の特徴と解答アプローチ</h3><p>組織・人事を中心とした戦略・組織論に関する事例が出題されます。企業の組織構造、人事制度、企業文化、リーダーシップなどがテーマとなります。</p><h4>対策のポイント</h4><ul><li>与件文から企業の強み・弱み（SWOT分析）を正確に読み取る。</li><li>解答の際は、必ず「組織・人事」の切り口で説明する。「〇〇という戦略を実行するために、△△という組織体制を構築し、□□という人事施策を行う」といった一貫性のある論理構成が重要。</li><li>登場人物の想いや企業の歴史を汲み取り、解答に反映させる。</li></ul>`,
+        questions: [ { q: '事例Iで最も重要視される能力は、次のうちどれか？', options: ['複雑な計算能力', '法律条文の暗記力', '与件文の読解と分析に基づいた論理的な提案力', '最新のITトレンド知識'], answer: 2, explanation: '事例Iでは、与えられた企業の状況（与件文）を正確に分析し、組織論や戦略論のフレームワークを用いて、企業の課題解決に向けた説得力のある提案を組み立てる能力が求められます。' } ]
+      },
+      { id: '8-2', title: '事例 II (マーケティング・流通)', content: `<h3>事例 II の特徴と解答アプローチ</h3><p>マーケティング・流通に関する事例が出題されます。ターゲット顧客の設定、マーケティング・ミックス（4P）、販売戦略、ブランディングなどが主なテーマです。</p><h4>対策のポイント</h4><ul><li>与件文に書かれている事実（特に企業の強み）を最大限に活用する。</li><li>「誰に・何を・どのように」提供するのかを明確にした、具体的で実現可能な提案を行う。</li><li>売上向上に直結する施策を、4Pの観点から整合性を持たせて記述する。</li></ul>`,
+        questions: [ { q: 'ある地方の和菓子屋の売上向上策を提案する場合、事例IIの観点から最も重要なことは何か？', options: ['生産ラインの自動化', '新しい会計システムの導入', 'ターゲット顧客の再設定と新商品の開発', '役員報酬の削減'], answer: 2, explanation: '事例IIでは、誰に（ターゲット）、何を（製品）、いくらで（価格）、どこで（流通）、どのように（販促）売るか、というマーケティングの視点が中心となります。ターゲット顧客の再設定とそれに合わせた商品開発は、その根幹をなす重要な提案です。' } ]
+      },
+      { id: '8-3', title: '事例 III (生産・技術)', content: `<h3>事例 III の特徴と解答アプローチ</h3><p>生産・技術管理に関する事例が出題されます。生産計画、品質管理（QC）、納期管理（D）、在庫管理、生産性向上などがテーマとなります。</p><h4>対策のポイント</h4><ul><li>生産プロセスの問題点を、QCD（品質・コスト・納期）や4M（人・機械・材料・方法）の観点から多角的に特定する。</li><li>解答は「現状の問題点→課題→具体的な改善策→期待される効果」という構成を意識する。</li><li>生産現場の状況をイメージし、現実的な解決策を考える。</li></ul>`,
+        questions: [ { q: 'ある工場の生産性が低い原因を分析する場合、事例IIIでまず着目すべき点は何か？', options: ['従業員のモチベーション', '製品のデザイン', '生産ラインの各工程の稼働率と在庫状況', '広告宣伝費'], answer: 2, explanation: '事例IIIでは、生産現場の具体的な問題点を発見することが第一歩です。各工程の稼働率や工程間の在庫（仕掛品）を分析することで、生産プロセス全体の非効率な部分（ボトルネック）を特定できます。' } ]
+      },
+      { id: '8-4', title: '事例 IV (財務・会計)', content: `<h3>事例 IV の特徴と解答アプローチ</h3><p>財務・会計に関する事例が出題されます。財務諸表分析、経営分析指標の計算、資金繰り、投資の経済性計算などがテーマとなります。</p><h4>対策のポイント</h4><ul><li>経営分析、CVP分析、キャッシュフロー計算、NPV法などの計算問題を、電卓なしで迅速かつ正確に解くための反復練習が不可欠。</li><li>計算結果をもとに、企業の財務的な課題を特定し、その原因を与件文から探る。</li><li>課題解決のための具体的な打ち手を、財務的な観点から評価・提案する。</li></ul>`,
+        questions: [ 
+            { q: '企業の財務安全性を評価する際、短期的な支払い能力を示す指標はどれか？', options: ['売上高総利益率', '総資本回転率', '流動比率', '自己資本利益率(ROE)'], answer: 2, explanation: '流動比率（流動資産÷流動負債）は、企業が短期的な債務を返済する能力を測る代表的な安全性指標です。' },
+            { q: '設備投資の意思決定で用いられるNPV（正味現在価値）法において、投資すべきと判断されるのはどのような場合か？', options: ['NPVがマイナスの場合', 'NPVがゼロの場合', 'NPVがプラスの場合', '内部収益率(IRR)より低い場合'], answer: 2, explanation: 'NPV法では、投資によって将来生み出されるキャッシュフローの現在価値から初期投資額を差し引いた正味現在価値を計算し、その値がプラスになる場合に投資を実行すべきと判断します。' }
+        ]
+      },
+    ]
+  },
+  { id: 9, category: '第2次口述試験', subject: '口述試験対策', period: '2026年11月～12月',
+    topics: [
+      { id: '9-1', title: '口述試験の概要と対策', content: `<h3>口述試験とは</h3><p>筆記試験で解答した事例に基づき、約10分間の面接形式で行われる試験です。事例企業の社長へのコンサルティングを想定した質疑応答が行われます。</p><h4>評価のポイント</h4><ul><li>コミュニケーション能力（分かりやすく、論理的に話せるか）</li><li>診断士としての適性・態度</li><li>筆記試験の事例内容の深い理解</li></ul><h4>対策</h4><p>筆記試験の4事例について、自分の解答の根拠を再確認し、様々な角度からの質問を想定して回答を準備しておくことが重要です。予備校などの模擬面接を活用するのも効果的です。</p>`,
+        questions: [ { q: '第2次口述試験では、どのような内容について質問されますか？', options: ['経済全般に関する時事問題', '自己PRや志望動機', '筆記試験の4つの事例内容に基づいた質疑応答', '中小企業診断士制度の歴史'], answer: 2, explanation: '口述試験は、筆記試験で扱われた4つの事例企業に関する理解度や、診断士としての応用能力を問うための質疑応答が中心となります。' } ]
+      }
+    ]
+  }
+];
+
+// --- 2次試験 記述式問題データ ---
+const secondExamData = [
+    {
+        caseName: "令和5年度 事例 I",
+        questions: [
+            {
+                q: "第1問\n外部経営環境の変化に対応してきたA社の歴史について、以下の設問に答えよ。(a) A社が経験してきた外部経営環境の大きな変化とは何か。(b) その変化にどのように対応してきたか。",
+                keywords: ["多角化", "事業転換", "下請け", "OEM", "自社ブランド", "海外展開", "円高"],
+                explanation: "A社の歴史を整理し、外部環境の変化（円高、海外競合の台頭など）と、それに対するA社の対応（下請けからの脱却、自社ブランド開発、海外展開など）を時系列で明確に記述することが求められます。"
+            }
+        ]
+    },
+    {
+        caseName: "令和5年度 事例 II",
+        questions: [
+            {
+                q: "第1問\nB社の現在の強みと弱みを述べよ。",
+                keywords: ["老舗", "伝統", "職人技", "高品質", "顧客層", "高齢化", "新規顧客", "情報発信"],
+                explanation: "B社の強み（老舗としての信頼、職人技による高品質）と、弱み（顧客層の高齢化、デジタルを活用した情報発信力不足）を与件文から的確に抽出し、整理して記述する必要があります。"
+            }
+        ]
+    }
+];
+
+// --- アプリケーションのロジック ---
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM Element selectors
+    const roadmapContainer = document.getElementById('roadmap-container');
+    const learningModal = document.getElementById('learning-modal');
+    const reviewModal = document.getElementById('review-modal');
+    const dataModal = document.getElementById('data-modal');
+    const reviewQuizBtn = document.getElementById('review-quiz-btn');
+    const resetProgressBtn = document.getElementById('reset-progress-btn');
+    const exportProgressBtn = document.getElementById('export-progress-btn');
+    const importProgressBtn = document.getElementById('import-progress-btn');
+    
+    const mainTabs = document.querySelectorAll('.main-tab-btn');
+    const mainViews = {
+        '1st-exam': document.getElementById('view-1st-exam'),
+        '2nd-exam': document.getElementById('view-2nd-exam'),
+        'post-qual': document.getElementById('view-post-qual')
+    };
+    
+    const subTabs = document.querySelectorAll('.sub-tab-btn');
+    const subViews = {
+        roadmap: document.getElementById('view-roadmap'),
+        dojo: document.getElementById('view-dojo')
+    };
+
+    const dojoSubjectSelection = document.getElementById('dojo-subject-selection');
+    const dojoStartBtn = document.getElementById('dojo-start-btn');
+    const dojoQuizContainer = document.getElementById('dojo-quiz-container');
+    const dojoQuestionCount = document.getElementById('dojo-question-count');
+
+    const caseSelect = document.getElementById('2nd-exam-case-select');
+    const questionSelect = document.getElementById('2nd-exam-question-select');
+    const promptDiv = document.getElementById('2nd-exam-prompt');
+    const answerTextarea = document.getElementById('2nd-exam-answer');
+    const submitBtn2nd = document.getElementById('2nd-exam-submit');
+    const resultDiv = document.getElementById('2nd-exam-result');
+
+    // State variables
+    let completedTopics = new Set();
+    let bookmarkedQuestions = new Set();
+    let activeTopic = null;
+    let userAnswers = {};
+    let subjectChart = null;
+
+    // --- データ保存・読込 (localStorage) ---
+    const loadProgress = () => {
+        try {
+            const savedTopics = localStorage.getItem('sme_completedTopics');
+            const savedBookmarks = localStorage.getItem('sme_bookmarkedQuestions');
+            if (savedTopics) {
+                completedTopics = new Set(JSON.parse(savedTopics));
+            }
+            if (savedBookmarks) {
+                bookmarkedQuestions = new Set(JSON.parse(savedBookmarks));
+            }
+        } catch(e) {
+            console.error("localStorageからの進捗読み込みに失敗:", e);
+            localStorage.removeItem('sme_completedTopics');
+            localStorage.removeItem('sme_bookmarkedQuestions');
+        }
+    };
+
+    const saveProgress = () => {
+        try {
+            localStorage.setItem('sme_completedTopics', JSON.stringify([...completedTopics]));
+            localStorage.setItem('sme_bookmarkedQuestions', JSON.stringify([...bookmarkedQuestions]));
+        } catch(e) {
+            console.error("localStorageへの進捗保存に失敗。環境が制限されている可能性があります。", e);
+            alert("進捗の自動保存に失敗しました。手動でのエクスポートをお勧めします。");
+        }
+    };
+    
+    const resetProgress = () => {
+        if (window.confirm('本当にすべての学習進捗とブックマークをリセットしますか？この操作は元に戻せません。')) {
+            completedTopics.clear();
+            bookmarkedQuestions.clear();
+            saveProgress();
+            renderAll();
+        }
+    };
+
+    // --- レンダリング関連 ---
+    const renderAll = () => {
+        renderDashboard();
+        renderRoadmap();
+        populateDojoSubjects();
+    };
+
+    const renderDashboard = () => {
+        const allTopics = roadmapData.flatMap(s => s.topics);
+        const totalTopicsCount = allTopics.length;
+        const completedCount = completedTopics.size;
+        const progress = totalTopicsCount > 0 ? Math.round((completedCount / totalTopicsCount) * 100) : 0;
+
+        document.getElementById('overall-progress-bar').style.width = `${progress}%`;
+        document.getElementById('overall-progress-text').innerText = `${progress}%`;
+        
+        const ctx = document.getElementById('subject-progress-chart').getContext('2d');
+        const labels = roadmapData.map(s => s.subject);
+        const data = roadmapData.map(s => {
+            const subjectTopics = s.topics;
+            const completedInSubject = subjectTopics.filter(t => completedTopics.has(t.id)).length;
+            return subjectTopics.length > 0 ? Math.round((completedInSubject / subjectTopics.length) * 100) : 0;
+        });
+
+        if(subjectChart) {
+            subjectChart.data.labels = labels;
+            subjectChart.data.datasets[0].data = data;
+            subjectChart.update();
+        } else {
+            subjectChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '科目別進捗率 (%)',
+                        data: data,
+                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: { indexAxis: 'y', scales: { x: { beginAtZero: true, max: 100 } }, responsive: true, maintainAspectRatio: false }
+            });
+        }
+    };
+    
+    const renderRoadmap = () => {
+        let html = `<div class="space-y-8">`;
+        roadmapData.forEach(stage => {
+            html += `<div class="bg-white p-4 md:p-6 rounded-xl shadow-md border border-gray-200"><div class="mb-4"><span class="inline-block px-3 py-1 text-sm font-semibold rounded-full ${stage.category.includes('第1次') ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800'}">${stage.category}</span><h2 class="text-xl md:text-2xl font-bold mt-2 text-gray-700">${stage.subject}</h2><p class="text-md text-gray-500">${stage.period}</p></div><div class="space-y-3">`;
+            stage.topics.forEach(topic => {
+                const status = getTopicStatus(topic);
+                const isLocked = status === 'locked';
+                const icon = {
+                    completed: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mr-3 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`,
+                    unlocked: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500 mr-3 flex-shrink-0"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`,
+                    locked: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mr-3 flex-shrink-0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`
+                };
+                html += `<div data-topic-id="${topic.id}" class="topic-item flex items-center justify-between p-4 rounded-lg transition-all duration-300 ${isLocked ? 'bg-gray-200 cursor-not-allowed' : 'bg-white border hover:shadow-lg hover:border-blue-500 cursor-pointer'}"><div class="flex items-center min-w-0">${icon[status]}<span class="font-medium truncate ${isLocked ? 'text-gray-500' : 'text-gray-800'}">${topic.title}</span></div>${!isLocked ? `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 flex-shrink-0"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>` : ''}</div>`;
+            });
+            html += `</div></div>`;
+        });
+        html += `</div>`;
+        roadmapContainer.innerHTML = html;
+        addTopicClickListeners();
+    };
+
+    // --- モーダル・クイズ関連 ---
+    const openModal = (modal, htmlContent) => {
+        if(htmlContent) modal.innerHTML = htmlContent;
+        document.body.classList.add('modal-open-body');
+        modal.classList.add('is-open');
+    };
+    
+    const closeModal = (modal) => {
+        modal.classList.remove('is-open');
+        document.body.classList.remove('modal-open-body');
+        activeTopic = null;
+    };
+
+    const handleNext = () => {
+        if (activeTopic) {
+            completedTopics.add(activeTopic.id);
+            saveProgress();
+            const flatTopics = roadmapData.flatMap(s => s.topics);
+            const currentIndex = flatTopics.findIndex(t => t.id === activeTopic.id);
+            closeModal(learningModal);
+            
+            const nextTopic = currentIndex < flatTopics.length - 1 ? flatTopics[currentIndex + 1] : null;
+
+            if (nextTopic) {
+                setTimeout(() => {
+                    activeTopic = nextTopic;
+                    openModal(learningModal, createModalHtml('learning', nextTopic));
+                    addModalEventListeners('learning', nextTopic);
+                }, 300);
+            }
+            renderAll();
+        }
+    };
+    
+    // --- ブックマーク・復習テスト関連 ---
+    const toggleBookmark = (topicId, qIndex) => {
+        const questionId = `${topicId}-${qIndex}`;
+        const btn = document.querySelector(`[data-question-id="${questionId}"]`);
+        if (bookmarkedQuestions.has(questionId)) {
+            bookmarkedQuestions.delete(questionId);
+            btn.classList.remove('bookmarked');
+        } else {
+            bookmarkedQuestions.add(questionId);
+            btn.classList.add('bookmarked');
+        }
+        saveProgress();
+    };
+    
+    const startReviewQuiz = () => {
+        const bookmarkedArr = [...bookmarkedQuestions];
+        if (bookmarkedArr.length === 0) {
+            alert('ブックマークされた問題がありません。');
+            return;
+        }
+        
+        const shuffled = bookmarkedArr.sort(() => 0.5 - Math.random());
+        const selectedIds = shuffled.slice(0, 10);
+        
+        const reviewQuestions = selectedIds.map(id => {
+            const parts = id.split('-');
+            const qIndex = parseInt(parts.pop(), 10);
+            const topicId = parts.join('-');
+            
+            const topic = roadmapData.flatMap(s => s.topics).find(t => t.id === topicId);
+            
+            if (!topic || !topic.questions[qIndex]) {
+                console.error(`ブックマークされた問題が見つかりません: ${id}`);
+                return null;
+            }
+            return { ...topic.questions[qIndex], topicTitle: topic.title, topicId: topicId, originalIndex: qIndex };
+        }).filter(q => q !== null);
+
+        if (reviewQuestions.length === 0) {
+            bookmarkedQuestions.clear();
+            saveProgress();
+            alert('ブックマークされた問題の読み込みに失敗しました。ブックマーク情報をリセットします。');
+            return;
+        }
+        
+        userAnswers = {};
+        openModal(reviewModal, createModalHtml('review', { title: '復習テスト', questions: reviewQuestions }));
+        addModalEventListeners('review', { questions: reviewQuestions });
+    };
+
+    // --- データ管理（エクスポート・インポート） ---
+    const handleExport = () => {
+        const dataToSave = {
+            completed: [...completedTopics],
+            bookmarked: [...bookmarkedQuestions]
+        };
+        const saveDataString = btoa(JSON.stringify(dataToSave));
+        const exportHtml = `
+            <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg flex flex-col">
+                <div class="p-4 border-b flex justify-between items-center">
+                    <h2 class="text-lg font-bold">進捗のエクスポート</h2>
+                    <button class="data-modal-close-btn text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+                </div>
+                <div class="p-4 space-y-4">
+                    <p>以下の「保存コード」をコピーし、テキストファイルなどに保存してください。</p>
+                    <textarea id="export-code-area" class="w-full h-32 p-2 border rounded-md font-mono text-xs" readonly>${saveDataString}</textarea>
+                    <button id="copy-code-btn" class="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700">コードをコピー</button>
+                    <p id="copy-status" class="text-sm text-center text-green-600"></p>
+                </div>
+            </div>`;
+        openModal(dataModal, exportHtml);
+        
+        dataModal.querySelector('.data-modal-close-btn').addEventListener('click', () => closeModal(dataModal));
+        dataModal.querySelector('#copy-code-btn').addEventListener('click', () => {
+            const textArea = document.getElementById('export-code-area');
+            textArea.select();
+            document.execCommand('copy');
+            document.getElementById('copy-status').textContent = 'コピーしました！';
+            setTimeout(() => { document.getElementById('copy-status').textContent = ''; }, 2000);
+        });
+    };
+
+    const handleImport = () => {
+        const importHtml = `
+            <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg flex flex-col">
+                <div class="p-4 border-b flex justify-between items-center">
+                    <h2 class="text-lg font-bold">進捗のインポート</h2>
+                    <button class="data-modal-close-btn text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+                </div>
+                <div class="p-4 space-y-4">
+                    <p>保存した「保存コード」を以下に貼り付けてください。</p>
+                    <textarea id="import-code-area" class="w-full h-32 p-2 border rounded-md font-mono text-xs" placeholder="ここに保存コードを貼り付け..."></textarea>
+                    <button id="load-code-btn" class="w-full py-2 px-4 bg-sky-600 text-white font-bold rounded-lg hover:bg-sky-700">進捗を読み込む</button>
+                    <p id="import-status" class="text-sm text-center"></p>
+                </div>
+            </div>`;
+        openModal(dataModal, importHtml);
+
+        dataModal.querySelector('.data-modal-close-btn').addEventListener('click', () => closeModal(dataModal));
+        dataModal.querySelector('#load-code-btn').addEventListener('click', () => {
+            const textArea = document.getElementById('import-code-area');
+            const statusEl = document.getElementById('import-status');
+            const saveDataString = textArea.value.trim();
+            if (saveDataString) {
+                try {
+                    const decodedString = atob(saveDataString);
+                    const parsedData = JSON.parse(decodedString);
+                    if (parsedData.completed && parsedData.bookmarked) {
+                        completedTopics = new Set(parsedData.completed);
+                        bookmarkedQuestions = new Set(parsedData.bookmarked);
+                        saveProgress();
+                        renderAll();
+                        statusEl.textContent = '進捗を正常に読み込みました！';
+                        statusEl.className = 'text-sm text-center text-green-600';
+                        setTimeout(() => closeModal(dataModal), 1500);
+                    } else {
+                        throw new Error('無効なデータ形式です');
+                    }
+                } catch (e) {
+                    statusEl.textContent = 'コードの読み込みに失敗しました。形式を確認してください。';
+                    statusEl.className = 'text-sm text-center text-red-600';
+                    console.error("インポート失敗:", e);
+                }
+            } else {
+                statusEl.textContent = 'コードを入力してください。';
+                statusEl.className = 'text-sm text-center text-red-600';
+            }
+        });
+    };
+
+    // --- ★★★ 進行状況判断ロジック ★★★ ---
+    const getTopicStatus = (topic) => {
+        if (completedTopics.has(topic.id)) {
+            return 'completed';
+        }
+
+        const flatTopics = roadmapData.flatMap(s => s.topics);
+        const currentIndex = flatTopics.findIndex(t => t.id === topic.id);
+
+        if (currentIndex === 0) {
+             return 'unlocked';
+        }
+
+        const prevTopic = flatTopics[currentIndex - 1];
+        if (completedTopics.has(prevTopic.id)) {
+            return 'unlocked';
+        }
+
+        return 'locked';
+    };
+    
+    const addTopicClickListeners = () => {
+        document.querySelectorAll('.topic-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const topicId = e.currentTarget.dataset.topicId;
+                const topic = roadmapData.flatMap(s => s.topics).find(t => t.id === topicId);
+                if (getTopicStatus(topic) !== 'locked') {
+                    activeTopic = topic;
+                    openModal(learningModal, createModalHtml('learning', topic));
+                    addModalEventListeners('learning', topic);
+                }
+            });
+        });
+    };
+    
+    const createModalHtml = (type, data) => {
+        const isReview = type === 'review';
+        let quizHtml = '';
+        if (data.questions && data.questions.length > 0) {
+            quizHtml = `<div class="modal-quiz-container mt-8 pt-6 border-t"><h3 class="text-lg font-bold my-6 text-blue-600">${isReview ? '復習問題' : '理解度チェック'}</h3>`;
+            data.questions.forEach((q, qIndex) => {
+                const questionId = isReview ? `${q.topicId}-${q.originalIndex}` : `${data.id}-${qIndex}`;
+                const isBookmarked = bookmarkedQuestions.has(questionId);
+                quizHtml += `<div class="mb-6 p-4 border rounded-lg bg-gray-50">
+                    <div class="flex justify-between items-start">
+                        <p class="font-semibold mb-3 flex-1">問 ${qIndex + 1}: ${q.q}</p>
+                        ${!isReview ? `<button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" data-question-id="${questionId}" data-topic-id="${data.id}" data-q-index="${qIndex}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 hover:text-amber-500"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></button>` : ''}
+                    </div>
+                    ${isReview ? `<p class="text-sm text-gray-500 mb-2">（出題元: ${q.topicTitle}）</p>` : ''}
+                    <div class="space-y-2">`;
+                q.options.forEach((opt, oIndex) => {
+                    quizHtml += `<label class="block p-3 rounded-md border cursor-pointer hover:bg-gray-100"><input type="radio" name="q-${qIndex}" value="${oIndex}" class="mr-3">${opt}</label>`;
+                });
+                quizHtml += `</div><div class="quiz-explanation mt-3"></div></div>`;
+            });
+            quizHtml += `<button class="submit-quiz-btn w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 disabled:bg-gray-300" disabled>回答を確定する</button>`;
+            quizHtml += `</div>`;
+        }
+
+        return `
+            <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl h-full max-h-[95vh] flex flex-col">
+                <div class="p-4 border-b flex justify-between items-center flex-shrink-0">
+                    <h2 class="text-lg md:text-xl font-bold text-gray-800">${data.title}</h2>
+                    <button class="modal-close-btn text-gray-500 hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                </div>
+                <div class="flex-grow overflow-y-auto p-4 md:p-6">
+                    <div class="prose max-w-none">${!isReview ? marked.parse(data.content || '') : ''}</div>
+                    ${quizHtml}
+                    ${!isReview && data.content !== '（コンテンツ準備中）' ? `
+                    <div class="mt-8 pt-6 border-t">
+                        <h3 class="text-lg font-bold mb-4 text-purple-600 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="12" width="8" height="8" rx="2"/><path d="M8 12v-2a2 2 0 1 1 4 0v2"/><path d="M12 12h4"/><path d="M16 12h4"/><path d="M16 16v4"/><path d="M16 8v4"/></svg>わからないことをGeminiに質問する</h3>
+                        <div class="space-y-4">
+                            <textarea class="gemini-question-input w-full p-2 border rounded-lg" placeholder="例：SWOT分析の具体的な活用事例を教えてください。"></textarea>
+                            <button class="ask-gemini-btn w-full py-2 px-4 bg-purple-600 text-white font-bold rounded-lg flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>Geminiに質問する</button>
+                            <div class="gemini-response-container mt-4" style="display: none;">
+                                <div class="gemini-loading text-center py-4" style="display: none;"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div><p class="text-gray-600 mt-2">回答を生成中...</p></div>
+                                <div class="gemini-answer p-4 bg-gray-50 rounded-lg prose max-w-none text-gray-800"></div>
+                            </div>
+                        </div>
+                    </div>` : ''}
+                </div>
+                <div class="p-4 border-t bg-gray-50 flex justify-end flex-shrink-0">
+                    ${!isReview ? `<button class="modal-next-btn flex items-center gap-2 py-2 px-5 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700">次のコンテンツへ<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>` : `<button class="modal-close-btn py-2 px-5 bg-gray-500 text-white font-bold rounded-lg hover:bg-gray-600">閉じる</button>`}
+                </div>
+            </div>
+        `;
+    };
+    
+    const addModalEventListeners = (type, data) => {
+        const modalEl = type === 'learning' ? learningModal : reviewModal;
+        
+        modalEl.querySelector('.modal-close-btn').addEventListener('click', () => closeModal(modalEl));
+        if (type === 'learning') {
+            const nextBtn = modalEl.querySelector('.modal-next-btn');
+            if (nextBtn) nextBtn.addEventListener('click', handleNext);
+        }
+
+        const submitBtn = modalEl.querySelector('.submit-quiz-btn');
+        if (submitBtn) {
+            const radios = modalEl.querySelectorAll('input[type="radio"]');
+            const checkAllAnswered = () => { if(Object.keys(userAnswers).length === data.questions.length) { submitBtn.disabled = false; } };
+            radios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    userAnswers[parseInt(e.target.name.split('-')[1])] = parseInt(e.target.value);
+                    checkAllAnswered();
+                });
+            });
+            submitBtn.addEventListener('click', () => {
+                submitBtn.style.display = 'none';
+                radios.forEach(r => r.disabled = true);
+                data.questions.forEach((q, qIndex) => {
+                    const isCorrect = q.answer === userAnswers[qIndex];
+                    const parentLabel = radios[qIndex * q.options.length].closest('label').parentElement;
+                    parentLabel.querySelector(`label:nth-child(${userAnswers[qIndex] + 1})`).classList.add(isCorrect ? 'bg-green-100' : 'bg-red-100');
+                    if (!isCorrect) parentLabel.querySelector(`label:nth-child(${q.answer + 1})`).classList.add('bg-green-100');
+                    const explanationEl = parentLabel.parentElement.querySelector('.quiz-explanation');
+                    explanationEl.innerHTML = `<div class="p-3 rounded-md bg-blue-50 text-blue-800 border border-blue-200"><p class="font-bold">正解：${q.options[q.answer]}</p><p class="mt-1 text-sm">${q.explanation}</p></div>`;
+                });
+                if (activeTopic && type === 'learning') {
+                    completedTopics.add(activeTopic.id);
+                    saveProgress();
+                    renderAll();
+                }
+            });
+        }
+        
+        modalEl.querySelectorAll('.bookmark-btn').forEach(btn => {
+            btn.addEventListener('click', () => toggleBookmark(btn.dataset.topicId, btn.dataset.qIndex));
+        });
+        
+        const askBtn = modalEl.querySelector('.ask-gemini-btn');
+        if (askBtn) {
+            askBtn.addEventListener('click', async () => {
+                const questionInput = modalEl.querySelector('.gemini-question-input');
+                const question = questionInput.value;
+                if (!question.trim()) return;
+
+                const responseContainer = modalEl.querySelector('.gemini-response-container');
+                const loading = modalEl.querySelector('.gemini-loading');
+                const answerDiv = modalEl.querySelector('.gemini-answer');
+                responseContainer.style.display = 'block';
+                answerDiv.style.display = 'none';
+                loading.style.display = 'block';
+
+                try {
+                    const prompt = `あなたは中小企業診断士の試験に非常に詳しい専門家です。以下の学習トピックに関する質問に対して、受験生に分かりやすく、丁寧かつ正確に回答してください。\n\n学習トピック: 「${activeTopic.title}」\n\n質問:\n「${question}」\n\n回答:`;
+                    const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                    const apiKey = "AIzaSyACs-eSxZdBCAtPaVMcDKEG9TEGFFyk4YM";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    
+                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text || '申し訳ありません、回答を生成できませんでした。';
+                    answerDiv.innerHTML = marked.parse(text);
+                } catch (error) {
+                    console.error('Gemini API call failed:', error);
+                    answerDiv.innerHTML = '<p class="text-red-500">エラーが発生しました。APIキーが有効か、ネットワーク接続を確認してください。</p>';
+                } finally {
+                    loading.style.display = 'none';
+                    answerDiv.style.display = 'block';
+                }
+            });
+        }
+    };
+
+    // --- 過去問道場関連 ---
+    const populateDojoSubjects = () => {
+        dojoSubjectSelection.innerHTML = '';
+        roadmapData.forEach(subject => {
+            if (!subject.category.includes('第1次')) return;
+            const isAnyTopicUnlocked = subject.topics.some(topic => getTopicStatus(topic) !== 'locked');
+            const div = document.createElement('div');
+            div.className = 'flex items-center';
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = `dojo-subject-${subject.id}`;
+            checkbox.value = subject.id;
+            checkbox.className = 'h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500';
+            checkbox.disabled = !isAnyTopicUnlocked;
+            const label = document.createElement('label');
+            label.htmlFor = `dojo-subject-${subject.id}`;
+            label.textContent = subject.subject;
+            label.className = `ml-2 block text-sm ${isAnyTopicUnlocked ? 'text-gray-900' : 'text-gray-400'}`;
+            div.appendChild(checkbox);
+            div.appendChild(label);
+            dojoSubjectSelection.appendChild(div);
+        });
+    };
+
+    const startDojoQuiz = () => {
+        const selectedSubjectIds = [...dojoSubjectSelection.querySelectorAll('input:checked')].map(cb => parseInt(cb.value));
+        if (selectedSubjectIds.length === 0) {
+            alert('出題範囲の科目を1つ以上選択してください。');
+            return;
+        }
+
+        let availableQuestions = [];
+        roadmapData
+            .filter(subject => selectedSubjectIds.includes(subject.id))
+            .forEach(subject => {
+                subject.topics.forEach(topic => {
+                    if (getTopicStatus(topic) !== 'locked' && topic.questions.length > 0) {
+                        topic.questions.forEach((q, qIndex) => {
+                            availableQuestions.push({ ...q, topicTitle: topic.title, topicId: topic.id, originalIndex: qIndex });
+                        });
+                    }
+                });
+            });
+
+        if (availableQuestions.length === 0) {
+            alert('選択された範囲で出題できる問題がありません。学習を進めてください。');
+            return;
+        }
+        
+        const questionCount = parseInt(dojoQuestionCount.value, 10);
+        const shuffled = availableQuestions.sort(() => 0.5 - Math.random());
+        const quizQuestions = shuffled.slice(0, questionCount);
+        
+        renderDojoQuiz(quizQuestions);
+    };
+
+    const renderDojoQuiz = (questions) => {
+        userAnswers = {};
+        let quizHtml = `<h3 class="text-xl font-bold mb-6 text-gray-800">演習問題 (${questions.length}問)</h3>`;
+        questions.forEach((q, qIndex) => {
+            quizHtml += `<div class="mb-6 p-4 border rounded-lg bg-gray-50">
+                <p class="font-semibold mb-3 flex-1">問 ${qIndex + 1}: ${q.q}</p>
+                <p class="text-sm text-gray-500 mb-2">（出題元: ${q.topicTitle}）</p>
+                <div class="space-y-2">`;
+            q.options.forEach((opt, oIndex) => {
+                quizHtml += `<label class="block p-3 rounded-md border cursor-pointer hover:bg-gray-100"><input type="radio" name="dojo-q-${qIndex}" value="${oIndex}" class="mr-3">${opt}</label>`;
+            });
+            quizHtml += `</div><div class="dojo-quiz-explanation mt-3"></div></div>`;
+        });
+        quizHtml += `<button class="dojo-submit-quiz-btn w-full py-2 px-4 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700">回答を確定して採点する</button>`;
+        dojoQuizContainer.innerHTML = quizHtml;
+
+        const submitBtn = dojoQuizContainer.querySelector('.dojo-submit-quiz-btn');
+        const radios = dojoQuizContainer.querySelectorAll('input[type="radio"]');
+        
+        radios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                userAnswers[parseInt(e.target.name.split('-')[2])] = parseInt(e.target.value);
+            });
+        });
+
+        submitBtn.addEventListener('click', () => {
+            submitBtn.style.display = 'none';
+            radios.forEach(r => r.disabled = true);
+            let correctCount = 0;
+            questions.forEach((q, qIndex) => {
+                const isCorrect = q.answer === userAnswers[qIndex];
+                if (isCorrect) correctCount++;
+                const parentLabel = radios[qIndex * q.options.length].closest('label').parentElement;
+                parentLabel.querySelector(`label:nth-child(${userAnswers[qIndex] + 1})`).classList.add(isCorrect ? 'bg-green-100' : 'bg-red-100');
+                if (!isCorrect) parentLabel.querySelector(`label:nth-child(${q.answer + 1})`).classList.add('bg-green-100');
+                const explanationEl = parentLabel.parentElement.querySelector('.dojo-quiz-explanation');
+                explanationEl.innerHTML = `<div class="p-3 rounded-md bg-blue-50 text-blue-800 border border-blue-200"><p class="font-bold">正解：${q.options[q.answer]}</p><p class="mt-1 text-sm">${q.explanation}</p></div>`;
+            });
+            
+            const resultHtml = `<div class="mt-8 p-6 text-center bg-yellow-100 border border-yellow-300 rounded-lg">
+                <h3 class="text-2xl font-bold text-yellow-800">採点結果</h3>
+                <p class="text-4xl font-extrabold my-4">${correctCount} / ${questions.length}</p>
+                <p class="text-lg">正解率: ${Math.round((correctCount / questions.length) * 100)}%</p>
+            </div>`;
+            dojoQuizContainer.insertAdjacentHTML('beforeend', resultHtml);
+        });
+    };
+
+    // --- 2次試験関連 ---
+    const populate2ndExamSelects = () => {
+        secondExamData.forEach((caseData, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = caseData.caseName;
+            caseSelect.appendChild(option);
+        });
+        update2ndExamQuestionSelect();
+    };
+
+    const update2ndExamQuestionSelect = () => {
+        const caseIndex = caseSelect.value;
+        const caseData = secondExamData[caseIndex];
+        questionSelect.innerHTML = '';
+        caseData.questions.forEach((q, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = q.q.split('\n')[0]; // 設問の1行目を表示
+            questionSelect.appendChild(option);
+        });
+        update2ndExamContent();
+    };
+
+    const update2ndExamContent = () => {
+        const caseIndex = caseSelect.value;
+        const qIndex = questionSelect.value;
+        const question = secondExamData[caseIndex].questions[qIndex];
+        promptDiv.innerHTML = marked.parse(question.q);
+        answerTextarea.value = '';
+        resultDiv.classList.add('hidden');
+    };
+
+    const score2ndExamAnswer = () => {
+        const caseIndex = caseSelect.value;
+        const qIndex = questionSelect.value;
+        const question = secondExamData[caseIndex].questions[qIndex];
+        const userAnswer = answerTextarea.value;
+        
+        let foundKeywords = [];
+        let missingKeywords = [];
+        
+        question.keywords.forEach(kw => {
+            if (userAnswer.includes(kw)) {
+                foundKeywords.push(kw);
+            } else {
+                missingKeywords.push(kw);
+            }
+        });
+
+        const score = Math.round((foundKeywords.length / question.keywords.length) * 100);
+
+        let resultHtml = `
+            <h3 class="text-xl font-bold text-gray-800 mb-4">キーワード採点結果</h3>
+            <div class="text-center mb-4">
+                <p class="text-lg">参考スコア</p>
+                <p class="text-5xl font-bold ${score >= 60 ? 'text-green-600' : 'text-red-600'}">${score} <span class="text-2xl">点</span></p>
+            </div>
+            <div class="mb-4">
+                <h4 class="font-semibold">含まれていたキーワード (${foundKeywords.length}/${question.keywords.length})</h4>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    ${foundKeywords.map(kw => `<span class="keyword found px-2 py-1 text-sm rounded-full">${kw}</span>`).join('')}
+                </div>
+            </div>
+            <div class="mb-4">
+                <h4 class="font-semibold">不足している可能性のあるキーワード</h4>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    ${missingKeywords.map(kw => `<span class="keyword missing px-2 py-1 text-sm rounded-full">${kw}</span>`).join('')}
+                </div>
+            </div>
+            <div>
+                <h4 class="font-semibold">解説とアプローチ</h4>
+                <p class="text-sm text-gray-700 mt-2">${question.explanation}</p>
+            </div>
+        `;
+        resultDiv.innerHTML = resultHtml;
+        resultDiv.classList.remove('hidden');
+    };
+
+    // --- 初期化処理 ---
+    loadProgress();
+    renderAll();
+    populate2ndExamSelects();
+    
+    // イベントリスナーを設定
+    reviewQuizBtn.addEventListener('click', startReviewQuiz);
+    resetProgressBtn.addEventListener('click', resetProgress);
+    exportProgressBtn.addEventListener('click', handleExport);
+    importProgressBtn.addEventListener('click', handleImport);
+    dojoStartBtn.addEventListener('click', startDojoQuiz);
+    
+    mainTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            mainTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            Object.values(mainViews).forEach(v => v.classList.add('hidden'));
+            const viewKey = tab.id.replace('main-tab-', '');
+            mainViews[viewKey].classList.remove('hidden');
+        });
+    });
+
+    subTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            subTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            Object.values(subViews).forEach(v => v.classList.add('hidden'));
+            const viewKey = tab.id.replace('sub-tab-', '');
+            subViews[viewKey].classList.remove('hidden');
+        });
+    });
+
+    caseSelect.addEventListener('change', update2ndExamQuestionSelect);
+    questionSelect.addEventListener('change', update2ndExamContent);
+    submitBtn2nd.addEventListener('click', score2ndExamAnswer);
+});
+</script>
+
+</body>
+</html>
